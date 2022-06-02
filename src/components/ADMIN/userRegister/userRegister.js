@@ -82,7 +82,7 @@ export default function UserRegister() {
         <br />
         <div class="form-group">
           <label for="gender">Gender</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="gender"
@@ -90,7 +90,11 @@ export default function UserRegister() {
             onChange={(e)=>{
               setGender(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            <option >Male</option>
+            <option >Female</option>
+            </select>
         </div>
         <br />
         <div class="form-group">
@@ -134,7 +138,7 @@ export default function UserRegister() {
         <br />
         <div class="form-group">
           <label for="type">User Type</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="type"
@@ -142,7 +146,13 @@ export default function UserRegister() {
             onChange={(e)=>{
               setType(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            <option >ADMIN</option>
+            <option >SUPERVISOR</option>
+            <option >CO-SUPERVISOR</option>
+            <option >PANEL</option>
+            </select>
         </div>
         <br/>
 
