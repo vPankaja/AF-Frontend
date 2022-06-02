@@ -13,6 +13,9 @@ import Nav from "./components/nav";
 import Nav1 from './components/Navbar'
 import AllUsers from "./components/allusers/allusers";
 import UpdateUser from "./components/updateUser/updateUser";
+import CreateMarking from "./components/createMarking/createMarking";
+import AllMarkings from "./components/allMarkings/allMarkings";
+
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +36,8 @@ class App extends Component {
           <Route path="/login" element={<Login />} />
           <Route path="/allusers" element={<AllUsers />} />
           <Route path="/update/:id" element={<UpdateUser />} />
+          <Route path="/createmarking" element={<CreateMarking />} />
+          <Route path="/allmarkings" element={<AllMarkings />} />
         </Routes>
       </Router>
     );

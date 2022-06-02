@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import swal from 'sweetalert';
 
 export default function UpdateUser() {
   const { id } = useParams();
@@ -51,12 +52,20 @@ export default function UpdateUser() {
     };
 
     axios.put(`http://localhost:6500/user/update/${id}`, newUser)
-      .then(() => {
-        window.location = "/allusers";
+      .then((willUpdate) => {
+        if(willUpdate){
+          swal({
+            title: "Success",
+            text: "User Successfully Updated",
+            icon:  "success",
+            type: "success"
+          }).then(function(){
+            window.location.href="/allusers";
+          })
+        } else{
+          swal("Update User Failed!");
+        }
       })
-      .catch((e) => {
-        alert("error");
-      });
   }
 
   return (
