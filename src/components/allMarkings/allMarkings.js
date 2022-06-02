@@ -5,32 +5,32 @@ import '../user.css';
 import { Link} from 'react-router-dom'
 import swal from 'sweetalert';
 
-export default function AllUsers(){
+export default function AllMarkings(){
 
-    const [users, setUsers] = useState([]);
+    const [markings, setMarkings] = useState([]);
     const [searchTerm, setsearchTerm] = useState("");
 
-    const deleteUser=(id) =>{
+    const deleteMarking=(id) =>{
         swal({
             title: "Are you sure?",
-            text: "The User Will be Deleted ",
+            text: "The Marking Will be Deleted ",
             icon: "warning",
             buttons: true,
             dangerMode: true,
           })
           .then((willDelete) => {
                 if(willDelete){
-            axios.delete(`http://localhost:6500/user/delete/${id}`).then(()=>{
+            axios.delete(`http://localhost:6500/marking/deleteMarking/${id}`).then(()=>{
 
 
             if (willDelete) {
               swal({
-                title: "The User has been Removed!",
-                text: "You can Continue with Your Other Users.",
+                title: "The Marking has been Removed!",
+                text: "You can Continue with Your Other Markings.",
                 icon:  "success",
                 type: "success"
               }).then(function(){
-                window.location.href="/allusers";
+                window.location.href="/allMarkings";
                })
             } else {
               swal("Request Is Not Deleted");
@@ -42,14 +42,14 @@ export default function AllUsers(){
     }
 
     useEffect(()=>{
-        function getUsers() {
-            axios.get("http://localhost:6500/user/allusers").then((res)=>{
-                setUsers(res.data);
+        function getMarkings() {
+            axios.get("http://localhost:6500/marking/allMarkings").then((res)=>{
+                setMarkings(res.data);
             }).catch((err)=>{
                 alert((err.message));
             })
         }
-        getUsers();
+        getMarkings();
     },[])
 
 
@@ -60,7 +60,7 @@ export default function AllUsers(){
 
         <br/>
         <br/>
-        <h1><center> All Users </center></h1>
+        <h1><center> All Marking Schemes </center></h1>
         <br/>
         <br/>
 
@@ -75,7 +75,7 @@ export default function AllUsers(){
         </div>
 
         <div className="col-sm">
-        <h5>User Count : {users.length}</h5>
+        <h5>Marking Scheme Count : {markings.length}</h5>
         </div>
         </div>
 
@@ -87,12 +87,10 @@ export default function AllUsers(){
         <table className="table table-hover" >
                     <thead>
                         <tr>
-                            <th><center> User Name </center></th>
-                            <th><center> NIC </center></th>
-                            <th><center> Gender </center></th>
-                            <th><center> Contact No </center></th>
-                            <th><center> Email </center></th>
-                            <th><center> User Type </center></th>
+                            <th><center> Module Name </center></th>
+                            <th><center> Assignment Name </center></th>
+                            <th><center> Overall Marks </center></th>
+                            <th><center> Marking Description </center></th>
                             <th></th>
                     
                         </tr>
@@ -100,31 +98,26 @@ export default function AllUsers(){
                     <tbody>
                         {
                             
-                            users.filter(val=>{
+                            markings.filter(val=>{
                                 if (searchTerm === ''){
                                     return val;
                                 } else if(
+                                     
+                                     val.moduleName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                     val.assignmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                     val.overallMark.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                     val.description.toLowerCase().includes(searchTerm.toLowerCase()) 
 
-                                     val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.nic.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.gender.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.contactNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.type.toLowerCase().includes(searchTerm.toLowerCase())
                                 ){
                                     return val;
                                 }
                                 }).map(function (f) {
                                         return <tr>
-                                    <td ><center> {f.name} </center></td>
-                                    <td ><center> {f.nic} </center></td>
-                                    <td ><center> {f.gender} </center></td>
-                                    <td ><center> {f.contactNo} </center></td>
-                                    <td ><center> {f.email} </center></td>
-                                    <td ><center> {f.type} </center></td>
-
-                                    <td > <Link to={"/update/" + f._id} ><Button type="button" class="btn btn-primary" > Update User </Button></Link></td>
-                                    <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteUser(f._id)}> Delete </Button></td>
+                                    <td ><center> {f.moduleName} </center></td>
+                                    <td ><center> {f.assignmentName} </center></td>
+                                    <td ><center> {f.overallMark} </center></td>
+                                    <td ><center> {f.description} </center></td>
+                                    <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteMarking(f._id)}> Delete </Button></td>
                                         </tr>
         
                                     })
@@ -133,7 +126,11 @@ export default function AllUsers(){
                     </tbody>
                     </table>
                 </table>
-        </div>
+                </div>
+                <br/>
+                <br/>
+                <Link to={"/createMarking"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
+                <br/><br/>
 </div>
 </div>
 
