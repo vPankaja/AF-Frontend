@@ -19,11 +19,20 @@ export default function CreateMarking() {
         description,
     }
 
-    axios.post("http://localhost:6500/marking/createMarking",newMarking).then(()=>
-    {window.location.href="/allMarkings";
-
-  }).catch((err)=>{
-    alert(err)
+    axios.post("http://localhost:6500/marking/createMarking",newMarking).then((willcreate)=>
+    {
+      if(willcreate){
+      swal({
+        title: "Success",
+        text: "Marking Scheme Successfully Created",
+        icon:  "success",
+        type: "success"
+      }).then(function(){
+        window.location.href="/allmarkings";
+      })
+    } else{
+      swal("Create Marking Scheme Failed!");
+    }
   })
     
 

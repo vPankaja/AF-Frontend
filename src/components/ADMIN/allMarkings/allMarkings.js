@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@material-ui/core";
-import '../user.css';
+import '../../user.css';
 import { Link} from 'react-router-dom'
 import swal from 'sweetalert';
 
@@ -117,6 +117,7 @@ export default function AllMarkings(){
                                     <td ><center> {f.assignmentName} </center></td>
                                     <td ><center> {f.overallMark} </center></td>
                                     <td ><center> {f.description} </center></td>
+                                    
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteMarking(f._id)}> Delete </Button></td>
                                         </tr>
         
@@ -133,6 +134,7 @@ export default function AllMarkings(){
                 <br/><br/>
 </div>
 </div>
+
 
 </>
 
