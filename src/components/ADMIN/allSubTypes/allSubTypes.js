@@ -75,7 +75,7 @@ export default function AllSubTypes(){
         </div>
 
         <div className="col-sm">
-        <h5>Marking Scheme Count : {subTypes.length}</h5>
+        <h5>Submission Type Count : {subTypes.length}</h5>
         </div>
         </div>
 
@@ -106,7 +106,7 @@ export default function AllSubTypes(){
                                      val.subName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.submissionType.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.deadline.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.specialNote.toLowerCase().includes(searchTerm.toLowerCase()) 
+                                     val.explainST.toLowerCase().includes(searchTerm.toLowerCase()) 
 
                                 ){
                                     return val;
@@ -116,7 +116,7 @@ export default function AllSubTypes(){
                                     <td ><center> {f.subName} </center></td>
                                     <td ><center> {f.submissionType} </center></td>
                                     <td ><center> {f.deadline} </center></td>
-                                    <td ><center> {f.specialNote} </center></td>
+                                    <td ><center> {f.explainST} </center></td>
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteSubType(f._id)}> Delete </Button></td>
                                         </tr>
         
