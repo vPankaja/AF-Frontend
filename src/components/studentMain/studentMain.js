@@ -11,11 +11,11 @@ export default function StudentMain() {
   }
 
   function registerResearch() {
-
+    window.location.href = "/checkTopicStatus";
   }
 
   function requestSupervisor() {
-
+    window.location.href = "/requestTopic";
   }
 
   function requestCoSupervisor() {
@@ -57,7 +57,7 @@ export default function StudentMain() {
                         class="btn btn-info btn-lg btn-block mb-3"
                         onClick={registerResearch}
                       >
-                        REGISTER RESEARCH TOPIC
+                        CHECK TOPIC STATUS
                       </button>
                       <br />
                       <br />

@@ -29,31 +29,66 @@ export default function CreateStudentGroup() {
         const memberCheck = JSON.parse(memberds)
 
         // console.log(memberCheck)
+        const group = {
+          name,
+          member1,
+          member2,
+          member3,
+          member4
+        }
 
-        await checkAllMemberAvailability(memberCheck).then((res) => {
-            let val = Object.values(memberCheck).every((item) => {
-                return item === true;
-            })
-            
-            if(val) {
-                const group = {
-                    name,
-                    member1,
-                    member2,
-                    member3,
-                    member4
-                }
-
-                axios.post("http://localhost:6500/student/registerGroup", group).then((res) => {
-                    Swal.fire("Success", "Group Registered Succesfully", "success");
+        axios.post("http://localhost:6500/student/registerGroup", group).then((res) => {
+                    Swal.fire("Success", "Group Registered Succesfully", "success").then((res) => {
+                      if(res.isConfirmed) {
+                        window.location.href = "/studentMain";
+                      }
+                    })
                 }).catch((err) => {
                     alert(err);
                 })
-            }
+
+        // await checkAllMemberAvailability(memberCheck).then((res) => {
+        //     let val = Object.values(memberCheck).every((item) => {
+        //         return item === true;
+        //     })
             
-        }).catch((err) => {
+        //     if(val) {
+        //         const group = {
+        //             name,
+        //             member1,
+        //             member2,
+        //             member3,
+        //             member4
+        //         }
+
+        //         axios.post("http://localhost:6500/student/registerGroup", group).then((res) => {
+        //             Swal.fire("Success", "Group Registered Succesfully", "success");
+        //         }).catch((err) => {
+        //             alert(err);
+        //         })
+        //     }
             
-        }) 
+        // }).catch((err) => {
+            
+        // }) 
+    }
+
+    async function validateMember(member) {
+      const stud = {
+        email: member
+      }
+      const url = "http://localhost:6500/student/studentinGroup"
+      await axios.get(url, stud).then((res) => {
+        if(res.data.available) {
+          console.log(stud)
+          console.log(res)
+          Swal.fire("Success", "Student is available", "success");
+        }
+        else {
+          Swal.fire("Oops", "Student is already in another group, please select a member without a group", "error");
+        }
+      })
+
     }
 
     async function checkAllMemberAvailability(memberCheck) {
@@ -124,6 +159,7 @@ export default function CreateStudentGroup() {
                 }}
                 required
               />
+              <button type="button" class="btn btn-outline-success" onClick={()=>validateMember(member1)}>Validate</button>
             </div>
             <br />
             <div class="form-group">
@@ -138,6 +174,7 @@ export default function CreateStudentGroup() {
                 }}
                 required
               />
+              <button type="button" class="btn btn-outline-success" onClick={()=>validateMember(member2)}>Validate</button>
             </div>
             <br />
             <div class="form-group">
@@ -152,6 +189,7 @@ export default function CreateStudentGroup() {
                 }}
                 required
               />
+              <button type="button" class="btn btn-outline-success" onClick={()=>validateMember(member3)}>Validate</button>
             </div>
             <br />
             <div class="form-group">
@@ -166,6 +204,7 @@ export default function CreateStudentGroup() {
                 }}
                 required
               />
+              <button type="button" class="btn btn-outline-success" onClick={()=>validateMember(member4)}>Validate</button>
             </div>
 
             <button type="submit" class="btn btn-primary">
