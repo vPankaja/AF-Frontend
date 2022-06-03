@@ -8,6 +8,8 @@ export default function CreateSubType() {
   const [deadline,setDeadline] = useState("");
   const [explainST,setExplainST] = useState("");
 
+  const [pannelMembers,setPannelMembers] = useState([]);
+
   function sendData(e){
 
     e.preventDefault();
@@ -37,6 +39,14 @@ export default function CreateSubType() {
     
 
   }
+
+  useEffect(() => {
+    // var pannelMembers = axios.post("http://localhost:6500/subtype/createSubType")
+
+    // setPannelMembers(pannelMembers)
+
+  }, [])
+  
 
 
 
@@ -72,6 +82,11 @@ export default function CreateSubType() {
             }}
             required>
             <option selected></option>
+            {/* {
+              pannelMembers.forEach(element => (
+                <option >{element.name}</option>
+              ))
+            } */}
             <option >File Submission</option>
             <option >Text Submission</option>
             <option >On Paper Submission</option>

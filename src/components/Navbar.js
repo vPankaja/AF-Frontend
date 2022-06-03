@@ -19,7 +19,7 @@ const Nav1 = () => {
                               <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allmarkings'><strong>MARKINGS</strong></a>
                         </li>
                         < li class="nav-item" style={{ textIndent: '60px' }}>
-                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allsubtypes'><strong>SUBMISSION TYPES</strong></a>
+                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allsubtypes'><strong>SUBMISSIONS</strong></a>
                         </li>
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 
@@ -11,6 +11,19 @@ export default function UserRegister() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [type,setType] = useState("");
+
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
 
   function sendData(e){
 
@@ -148,9 +161,7 @@ export default function UserRegister() {
             }}
             required>
             <option selected></option>
-            <option >ADMIN</option>
             <option >SUPERVISOR</option>
-            <option >CO-SUPERVISOR</option>
             <option >PANEL</option>
             </select>
         </div>

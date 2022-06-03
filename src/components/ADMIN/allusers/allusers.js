@@ -4,6 +4,9 @@ import { Button } from "@material-ui/core";
 import '../../user.css';
 import { Link} from 'react-router-dom'
 import swal from 'sweetalert';
+import jspdf from 'jspdf'
+import 'jspdf-autotable'
+import img from '../logo.png';
 
 export default function AllUsers(){
 
@@ -41,6 +44,34 @@ export default function AllUsers(){
     
     }
 
+    const generatePDF = tickets => {
+ 
+        const doc = new jspdf();
+        const date = Date().split(" ");
+        const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+        const tableColumn = ["User Name","NIC", "Gender", "Contact No", "Email","User Type"];
+        const tableRows = [];
+    
+        tickets.map(ticket => {
+            const ticketData = [
+                ticket.name,
+                ticket.nic,
+                ticket.gender,
+                ticket.contactNo,
+                ticket.email,
+                ticket.type
+
+            ];
+            tableRows.push(ticketData);
+        })
+        doc.text("User Details Report", 14, 15).setFontSize(12);
+        doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
+        doc.addImage(img, 'JPEG', 170, 8, 22, 22);
+        // right down width height
+        doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8, }, startY: 35 });
+        doc.save(`User_Details_Report.pdf`);
+      };
+
     useEffect(()=>{
         function getUsers() {
             axios.get("http://localhost:6500/user/allusers").then((res)=>{
@@ -60,7 +91,10 @@ export default function AllUsers(){
         <h1><center> All Users </center></h1>
         <br/><br/> 
 
+        <div className="ms-auto">
         <Link to={"/"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
+
+        <Button type="button" class="btn btn-outline-warning" onClick={() =>  generatePDF(users)}>Generate Report</Button></div>
 
         <div className="row g-3">
         <div className="col-sm-7">
