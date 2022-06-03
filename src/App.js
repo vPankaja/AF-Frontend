@@ -13,6 +13,8 @@ import Nav from "./components/nav";
 import Nav1 from './components/Navbar'
 import AllUsers from "./components/allusers/allusers";
 import UpdateUser from "./components/updateUser/updateUser";
+import StudentMain from "./components/studentMain/studentMain";
+import CreateStudentGroup from "./components/createStudentGroup/createStudentGroup";
 
 class App extends Component {
   constructor(props) {
@@ -32,6 +34,8 @@ class App extends Component {
           <Route path="/studentRegister" exact element={<StudentRegister />} />
           <Route path="/login" element={<Login />} />
           <Route path="/allusers" element={<AllUsers />} />
+          <Route path="/studentMain" element={<StudentMain />} />
+          <Route path="/groupRegister" element={<CreateStudentGroup />} />
           <Route path="/update/:id" element={<UpdateUser />} />
         </Routes>
       </Router>
