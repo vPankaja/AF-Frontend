@@ -19,6 +19,9 @@ import CreateMarking from "./components/ADMIN/createMarking/createMarking";
 import AllMarkings from "./components/ADMIN/allMarkings/allMarkings";
 import CreateSubType from "./components/ADMIN/createSubType/createSubType";
 import AllSubTypes from "./components/ADMIN/allSubTypes/allSubTypes";
+import RequestResearch from "./components/requestResearch/requestResearch";
+import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
+import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
 
 
 class App extends Component {
@@ -41,6 +44,9 @@ class App extends Component {
           <Route path="/allusers" element={<AllUsers />} />
           <Route path="/studentMain" element={<StudentMain />} />
           <Route path="/groupRegister" element={<CreateStudentGroup />} />
+          <Route path="/requestTopic" element={<RequestResearch />} />
+          <Route path="/checkTopicStatus" element={<CheckTopicStatus />} />
+          <Route path="/requestCoSupervisor/:id" element={<RequestCoSupervisor />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
           <Route path="/allmarkings" element={<AllMarkings />} />
