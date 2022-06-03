@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@material-ui/core";
-import '../user.css';
+import '../../user.css';
 import { Link} from 'react-router-dom'
 import swal from 'sweetalert';
 
@@ -26,7 +26,7 @@ export default function AllUsers(){
             if (willDelete) {
               swal({
                 title: "The User has been Removed!",
-                text: "You can Continue with Your Other USers.",
+                text: "You can Continue with Your Other Users.",
                 icon:  "success",
                 type: "success"
               }).then(function(){
@@ -55,14 +55,12 @@ export default function AllUsers(){
 
     return(
         <>
-        <div className="vlft">
-        <div className="vcard" >
-
-        <br/>
-        <br/>
+        <div className="container">
+        <br/><br/>
         <h1><center> All Users </center></h1>
-        <br/>
-        <br/>
+        <br/><br/> 
+
+        <Link to={"/"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
 
         <div className="row g-3">
         <div className="col-sm-7">
@@ -79,10 +77,9 @@ export default function AllUsers(){
         </div>
         </div>
 
-        <br></br>
-        <br></br>
+        <br/><br/>
 
-        <div className="vcard2" >
+
         <table className="table table-bordered">
         <table className="table table-hover" >
                     <thead>
@@ -104,7 +101,7 @@ export default function AllUsers(){
                                 if (searchTerm === ''){
                                     return val;
                                 } else if(
-                                     val._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+
                                      val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.nic.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.gender.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -133,11 +130,8 @@ export default function AllUsers(){
                     </tbody>
                     </table>
                 </table>
-        </div>
-</div>
-</div>
-
-</>
+           </div>
+        </>
 
     )
 

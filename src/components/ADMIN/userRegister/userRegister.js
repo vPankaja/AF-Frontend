@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 export default function UserRegister() {
 
@@ -25,11 +26,20 @@ export default function UserRegister() {
       type
     }
 
-    axios.post("http://localhost:6500/user/reg",newUser).then(()=>
-    {window.location.href="/allusers";
-
-  }).catch((err)=>{
-    alert(err)
+    axios.post("http://localhost:6500/user/reg",newUser).then((willReg)=>
+    {
+      if(willReg){
+      swal({
+        title: "Success",
+        text: "User Successfully Registered",
+        icon:  "success",
+        type: "success"
+      }).then(function(){
+        window.location.href="/allusers";
+      })
+    } else{
+      swal("Register User Failed!");
+    }
   })
     
 
@@ -72,7 +82,7 @@ export default function UserRegister() {
         <br />
         <div class="form-group">
           <label for="gender">Gender</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="gender"
@@ -80,7 +90,11 @@ export default function UserRegister() {
             onChange={(e)=>{
               setGender(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            <option >Male</option>
+            <option >Female</option>
+            </select>
         </div>
         <br />
         <div class="form-group">
@@ -124,15 +138,21 @@ export default function UserRegister() {
         <br />
         <div class="form-group">
           <label for="type">User Type</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="type"
-            placeholder="Enter USer Type (Admin or Panel Member)"
+            placeholder="Enter User Type (Admin or Panel Member)"
             onChange={(e)=>{
               setType(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            <option >ADMIN</option>
+            <option >SUPERVISOR</option>
+            <option >CO-SUPERVISOR</option>
+            <option >PANEL</option>
+            </select>
         </div>
         <br/>
 

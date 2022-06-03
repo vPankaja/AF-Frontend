@@ -13,11 +13,15 @@ const Nav1 = () => {
                               <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/login'><strong>LOGIN</strong></a>
                         </li>
                         < li class="nav-item" style={{ textIndent: '60px' }}>
-                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/'><strong>REGISTER</strong></a>
-                        </li>
-                        < li class="nav-item" style={{ textIndent: '60px' }}>
                               <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allusers'><strong>USERS</strong></a>
                         </li>
+                        < li class="nav-item" style={{ textIndent: '60px' }}>
+                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allmarkings'><strong>MARKINGS</strong></a>
+                        </li>
+                        < li class="nav-item" style={{ textIndent: '60px' }}>
+                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allsubtypes'><strong>SUBMISSION TYPES</strong></a>
+                        </li>
+
 
                   </Nav>
             </Navbar >

@@ -1,142 +1,133 @@
-import React, { useState, useContext } from "react";
-// import Authantication from '../Services/Authantication';
-import "./login.css";
-// import { AuthContext } from '../Context/AuthContext';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import swal from "sweetalert";
+import React, { Component, useState, useEffect } from "react";
+import axios from "axios";
+import { Button, Modal } from "react-bootstrap";
 
-const eye = <FontAwesomeIcon icon={faEye} />;
+export default function UserLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
 
-const Login = (props) => {
-  const [user, setUser] = useState({ username: "", password: "" });
-  // const [message,setMessage] = useState(null);
-  //   const authContext = useContext(AuthContext);
-  const [passwordShown, setPasswordShown] = useState(false);
-
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
+  const handleClose = () => {
+    setShow(false);
+    setMessage("");
+  };
+  const handleShow = (message) => {
+    setShow(true);
+    setMessage(message);
   };
 
-  const onChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    var data = {
+      email: email,
+      password: password,
+    };
+
+    await axios
+      .post("http://localhost:5000/user/login", data)
+      .then((res) => {
+        console.log(res.data);
+        handleRedirectUser(res.data.type);
+
+        //save user data
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+        handleShow("Error!");
+      });
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (isAuthenticated) {
-      authContext.setUser(user);
-      if (user.role === "agent") {
-        props.history.push("/agent/agentprofile");
-      } else {
-        props.history.push("/supplier/supplierprofile");
-      }
+  const handleRedirectUser = (type) => {
+    if (type == "ADMIN") {
+      window.location.replace("/adminview");
+    } 
+    else if (type == "STUDENT") {
+      window.location.replace("/studentview");
+    }
+    else if (type == "STAFF") {
+      window.location.replace("/staffview");
     }
   };
 
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (userData) {
+      handleRedirectUser(userData.type);
+    }
+  }, []);
+
   return (
-    <>
-      <div className="bodylogin">
-        <div className="dloginlft">
-          <div className="dlogincard">
-            <div className="container">
-              <br />
-              <div className="row">
-                <div className="column column-loginbody">
-                  <div className="loginName">
-                    <center>
-                      <h2
-                        style={{
-                          fontFamily: "Arial,Helvetica,sans-serif",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        Login
-                      </h2>
-                    </center>
-                  </div>
-                  <div className="dlogincard2">
-                    <br />
+    <div className="container">
+      <br/><br/>
+      <h2>
+        <center>Login</center>
+      </h2>
+      <br/>
 
-                    <div className="dlogincard3">
-                      <form onSubmit={onSubmit} className="frm" noValidate>
-                        <div className="mb-3">
-                          <label
-                            htmlfor="email"
-                            className="form-label"
-                            style={{
-                              fontFamily: "Arial,Helvetica,sans-serif",
-                              fontSize: "18px",
-                            }}
-                          >
-                            Email
-                          </label>
-                          <input
-                            type="text"
-                            name="email"
-                            className="form-control"
-                            placeholder="Enter Email "
-                            onChange={onChange}
-                            required
-                          />
-                        </div>
+    <form onSubmit={handleSubmit}>
 
-                        <div className="pass-wrapper">
-                          <label
-                            htmlfor="password"
-                            className="form-label"
-                            style={{
-                              fontFamily: "Arial,Helvetica,sans-serif",
-                              fontSize: "18px",
-                            }}
-                          >
-                            Password
-                          </label>
-                          <div className="input-group mb-3">
-                            <input
-                              type={passwordShown ? "text" : "password"}
-                              name="password"
-                              className="form-control"
-                              id="log"
-                              placeholder="Enter Password"
-                              onChange={onChange}
-                              required
-                            />
-                            <span class="input-group-text" id="basic-addon2">
-                              <i
-                                className="eye"
-                                onClick={togglePasswordVisiblity}
-                              >
-                                {eye}
-                              </i>
-                            </span>
-                          </div>
-                        </div>
-                        <br/>
-                        <center>
-                          <button
-                            type="submit"
-                            className="btn btn-primary"
-                            id="dloginbtn"
-                          >
-                            Login
-                          </button>
-                        </center>
-                      </form>
-                    </div>
-                    <br />
-                  </div>
-                  <br />
-                  {/* {message ? <SupMessage message={message}/> : null} */}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="mb-3">
+          <label for="email" className="form-label">
+            Email
+          </label>
+          <input
+            required
+            type="text"
+            placeholder="Enter email address"
+            class="form-control"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-      </div>
-    </>
-  );
-};
 
-export default Login;
+        <div class="mb-3">
+          <label for="password" className="form-label">
+            Password
+          </label>
+          <input
+            required
+            type="password"
+            placeholder="Enter password"
+            class="form-control"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            required
+            type="submit"
+            placeholder="Login"
+            class="form-control"
+          />
+        </div>
+      </form>
+
+      {/* Dialogbox */}
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{message}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+
+  );
+}
+
+//export default userLogin;
