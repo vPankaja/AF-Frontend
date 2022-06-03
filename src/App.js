@@ -11,6 +11,8 @@ import StudentRegister from "./components/studentRegister/studentRegister"
 import UserLogin from "./components/login/login";
 import Nav from "./components/nav";
 import Nav1 from './components/Navbar'
+import StudentMain from "./components/studentMain/studentMain";
+import CreateStudentGroup from "./components/createStudentGroup/createStudentGroup";
 import AllUsers from "./components/ADMIN/allusers/allusers";
 import UpdateUser from "./components/ADMIN/updateUser/updateUser";
 import CreateMarking from "./components/ADMIN/createMarking/createMarking";
@@ -37,6 +39,8 @@ class App extends Component {
           <Route path="/studentRegister" exact element={<StudentRegister />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="/allusers" element={<AllUsers />} />
+          <Route path="/studentMain" element={<StudentMain />} />
+          <Route path="/groupRegister" element={<CreateStudentGroup />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
           <Route path="/allmarkings" element={<AllMarkings />} />
