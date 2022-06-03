@@ -55,14 +55,12 @@ export default function AllSubTypes(){
 
     return(
         <>
-        <div className="vlft">
-        <div className="vcard" >
-
-        <br/>
-        <br/>
+        <div className="container">
+        <br/><br/>
         <h1><center> All Submission Types </center></h1>
-        <br/>
-        <br/>
+        <br/><br/>
+
+        <Link to={"/createSubType"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
 
         <div className="row g-3">
         <div className="col-sm-7">
@@ -82,7 +80,6 @@ export default function AllSubTypes(){
         <br></br>
         <br></br>
 
-        <div className="vcard2" >
         <table className="table table-bordered">
         <table className="table table-hover" >
                     <thead>
@@ -127,12 +124,6 @@ export default function AllSubTypes(){
                     </table>
                 </table>
                 </div>
-                <br/>
-                <br/>
-                <Link to={"/createSubType"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
-                <br/><br/>
-</div>
-</div>
 
 </>
 

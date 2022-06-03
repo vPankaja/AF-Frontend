@@ -55,14 +55,13 @@ export default function AllMarkings(){
 
     return(
         <>
-        <div className="vlft">
-        <div className="vcard" >
+        <div className="container">
 
-        <br/>
-        <br/>
+        <br/><br/>
         <h1><center> All Marking Schemes </center></h1>
-        <br/>
-        <br/>
+        <br/><br/>
+
+        <Link to={"/createMarking"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
 
         <div className="row g-3">
         <div className="col-sm-7">
@@ -82,7 +81,6 @@ export default function AllMarkings(){
         <br></br>
         <br></br>
 
-        <div className="vcard2" >
         <table className="table table-bordered">
         <table className="table table-hover" >
                     <thead>
@@ -126,15 +124,9 @@ export default function AllMarkings(){
                             
                     </tbody>
                     </table>
-                </table>
-                </div>
-                <br/>
-                <br/>
-                <Link to={"/createMarking"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
-                <br/><br/>
-</div>
-</div>
+                </table>             
 
+</div>
 
 </>
 

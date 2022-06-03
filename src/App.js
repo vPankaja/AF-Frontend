@@ -8,7 +8,7 @@ import { Route, Switch } from "react-router";
 
 import UserRegister from "./components/ADMIN/userRegister/userRegister";
 import StudentRegister from "./components/studentRegister/studentRegister"
-import Login from "./components/login/login";
+import UserLogin from "./components/login/login";
 import Nav from "./components/nav";
 import Nav1 from './components/Navbar'
 import AllUsers from "./components/ADMIN/allusers/allusers";
@@ -35,7 +35,7 @@ class App extends Component {
         <Routes>
           <Route exact path="/" element={<UserRegister />} />
           <Route path="/studentRegister" exact element={<StudentRegister />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<UserLogin />} />
           <Route path="/allusers" element={<AllUsers />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
