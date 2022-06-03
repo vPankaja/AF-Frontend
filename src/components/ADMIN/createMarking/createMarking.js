@@ -5,7 +5,6 @@ export default function CreateMarking() {
   const [moduleName, setMName] = useState("");
   const [assignmentName, setAName] = useState("");
   const [overallMark, setOMark] = useState("");
-  const [description, setDescription] = useState("");
   const [attachment, setAttachment] = useState("");
 
   const handleFileUpload = (event) => {
@@ -33,7 +32,6 @@ export default function CreateMarking() {
               moduleName: moduleName,
               assignmentName: assignmentName,
               overallMark: overallMark,
-              description: description,
               attachment: fileUrl,
             };
 
@@ -130,21 +128,7 @@ export default function CreateMarking() {
         </div>
         <br />
         <div class="form-group">
-          <label for="description">Marks Description</label>
-          <textarea
-            type="text"
-            class="form-control"
-            id="description"
-            placeholder="Enter Description"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-            required
-          />
-        </div>
-        <br />
-        <div class="form-group">
-          <label for="overallMark">Attachments</label>
+          <label for="overallMark">Marking Description</label>
           <input
             type="file"
             class="form-control"

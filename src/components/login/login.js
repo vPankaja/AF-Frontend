@@ -25,7 +25,7 @@ export default function UserLogin() {
     };
 
     await axios
-      .post("http://localhost:5000/user/login", data)
+      .post("http://localhost:6500/user/login", data)
       .then((res) => {
         console.log(res.data);
         handleRedirectUser(res.data.type);
@@ -42,7 +42,7 @@ export default function UserLogin() {
 
   const handleRedirectUser = (type) => {
     if (type == "ADMIN") {
-      window.location.replace("/adminview");
+      window.location.replace("/allusers");
     } 
     else if (type == "STUDENT") {
       window.location.replace("/studentview");
