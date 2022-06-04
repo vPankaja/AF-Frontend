@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import '../../user.css';
 import { Link} from 'react-router-dom'
+import Nav1 from "../../Navbar";
 import swal from 'sweetalert';
 
 export default function AllSubTypes(){
@@ -55,6 +56,7 @@ export default function AllSubTypes(){
 
     return(
         <>
+        <Nav1 />
         <div className="container">
         <br/><br/>
         <h1><center> All Submission Types </center></h1>

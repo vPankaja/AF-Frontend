@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Nav1 from "../../Navbar";
 import swal from 'sweetalert';
 
 export default function UserRegister() {
@@ -61,7 +62,8 @@ export default function UserRegister() {
 
 
   return (
-
+    <>
+    <Nav1 />
     <div className="container">
       <form onSubmit={sendData}>
         <br/>
@@ -172,5 +174,6 @@ export default function UserRegister() {
         </button>
       </form>
     </div>
+    </>
   );
 }

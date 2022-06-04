@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Nav1 from "../../Navbar";
 
 export default function CreateSubType() {
 
@@ -51,7 +52,8 @@ export default function CreateSubType() {
 
 
   return (
-
+    <>
+    <Nav1 />
     <div className="container">
       <form onSubmit={sendData}>
         <br/>
@@ -126,5 +128,6 @@ export default function CreateSubType() {
         </button>
       </form>
     </div>
+    </>
   );
 }

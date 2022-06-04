@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import '../../user.css';
 import { Link} from 'react-router-dom'
+import Nav1 from "../../Navbar";
 import swal from 'sweetalert';
 
 export default function AllMarkings(){
@@ -55,6 +56,7 @@ export default function AllMarkings(){
 
     return(
         <>
+        <Nav1 />
         <div className="container">
 
         <br/><br/>
@@ -88,7 +90,6 @@ export default function AllMarkings(){
                             <th><center> Module Name </center></th>
                             <th><center> Assignment Name </center></th>
                             <th><center> Overall Marks </center></th>
-                            <th><center> Marking Description </center></th>
                             <th></th>
                     
                         </tr>
@@ -103,8 +104,8 @@ export default function AllMarkings(){
                                      
                                      val.moduleName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.assignmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.overallMark.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.description.toLowerCase().includes(searchTerm.toLowerCase()) 
+                                     val.overallMark.toLowerCase().includes(searchTerm.toLowerCase())
+
 
                                 ){
                                     return val;
@@ -114,8 +115,6 @@ export default function AllMarkings(){
                                     <td ><center> {f.moduleName} </center></td>
                                     <td ><center> {f.assignmentName} </center></td>
                                     <td ><center> {f.overallMark} </center></td>
-                                    <td ><center> {f.description} </center></td>
-                                    
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteMarking(f._id)}> Delete </Button></td>
                                         </tr>
         
