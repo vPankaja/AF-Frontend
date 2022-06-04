@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 import Nav1 from '../StudentNavbar';
 
-export default function RequestResearch() {
+export default function ReRequestResearch() {
+    const { id } = useParams();
+
+    const [research, setResearch] = useState("");
     const [users, setUsers] = useState([]);
     const [groupId, setGroupId] = useState("");
     const [topic, setTopic] = useState("");
@@ -24,7 +28,7 @@ export default function RequestResearch() {
         // console.log(supervisor)
     }
 
-    async function saveGroup() {
+    async function updateResearch() {
         const status = "pending"
         const ReqTopic = {
             topic,
@@ -32,7 +36,8 @@ export default function RequestResearch() {
             supervisor,
             status
         }
-        await axios.post("http://localhost:6500/student/registerTopic", ReqTopic).then((res) => {
+        axios.put(`http://localhost:6500/student/updateResearch/${id}`, ReqTopic).then((res) => {
+            console.log(res)
             Swal.fire("Success", "Topic Reguested Succesfully", "success").then((result) => {
                 if(result.isConfirmed) {
                     window.location.href = "/studentMain";
@@ -43,16 +48,26 @@ export default function RequestResearch() {
         })
     }
 
+    function getResearch() {
+        axios.get(`http://localhost:6500/student/getResearchById/${id}`).then((res) => {
+            setResearch(res.data);
+        })
+    }
+
+    useEffect(() => {
+        getResearch();
+    }, [])
+
     return (
         <>
-        <Nav1 />
+        <Nav1/>
             <div>
             <div class="card">
         <div class="card-body">
           <center>
             <h1>Request Research Topic</h1>
           </center>
-          <form onSubmit={saveGroup}>
+          <form onSubmit={updateResearch}>
             <br />
             <div class="form-group">
               <label for="name">Name of the Group</label>
@@ -60,6 +75,7 @@ export default function RequestResearch() {
                 type="text"
                 class="form-control"
                 id="name"
+                defaultValue={research.groupId}
                 placeholder="Enter Name of the Group"
                 onChange={(e) => {
                     setGroupId(e.target.value);
@@ -74,6 +90,7 @@ export default function RequestResearch() {
                 type="text"
                 class="form-control"
                 id="nic"
+                defaultValue={research.topic}
                 placeholder="Enter Research Topic"
                 onChange={(e) => {
                   setTopic(e.target.value);

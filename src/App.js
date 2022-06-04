@@ -30,6 +30,7 @@ import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
 
 import SubmitDocument from "./components/submitDocuments/submitDocuments";
+import ReRequestResearch from "./components/ReRequestTopic/reRequestTopic";
 
 import UploadDocument from "./components/ADMIN/uploadDocument/uploadDocument";
 import AllocatePM from "./components/ADMIN/allocatePM/allocataPM";
@@ -77,6 +78,7 @@ class App extends Component {
             element={<RequestCoSupervisor />}
           />
           <Route path="/submitDoc/:id" element={<SubmitDocument />} />
+          <Route path="/rerequestTopic/:id" element={<ReRequestResearch />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
           <Route path="/allmarkings" element={<AllMarkings />} />

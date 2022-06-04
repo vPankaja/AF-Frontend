@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Nav1 from '../StudentNavbar';
 
 export default function CreateStudentGroup() {
     const [name, setName] = useState("");
@@ -125,6 +126,7 @@ export default function CreateStudentGroup() {
 
     return (
         <>
+        <Nav1 />
             <div>
       <div class="card">
         <div class="card-body">

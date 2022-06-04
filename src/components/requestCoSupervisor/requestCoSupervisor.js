@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import Nav1 from '../StudentNavbar';
 
 export default function RequestCoSupervisor() {
     const { id } = useParams();
@@ -50,6 +51,7 @@ export default function RequestCoSupervisor() {
 
     return (
         <>
+        <Nav1 />
             <div>
                 
         <br />
