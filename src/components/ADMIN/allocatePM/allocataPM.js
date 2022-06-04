@@ -38,7 +38,7 @@ export default function AllocatePM() {
             icon: "success",
             type: "success",
           }).then(function () {
-            window.location.href = "/allusers";
+            window.location.href = "/allallocatedpanels";
           });
         } else {
           swal("Allocating Pannel Members Failed!");

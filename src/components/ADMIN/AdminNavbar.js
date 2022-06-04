@@ -19,7 +19,10 @@ const Nav1 = () => {
                               <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/uploadDocument'><strong>DOCUMENTS</strong></a>
                         </li>
                         < li class="nav-item" style={{ textIndent: '60px' }}>
-                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/alltopics'><strong>PANNEL</strong></a>
+                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/alltopics'><strong>Topics</strong></a>
+                        </li>
+                        < li class="nav-item" style={{ textIndent: '60px' }}>
+                              <a style={{color:'white'}} class="nav-link active" aria-current="page" href='/allallocatedpanels'><strong>PANNEL</strong></a>
                         </li>
 
 

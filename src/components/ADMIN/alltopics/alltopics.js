@@ -41,7 +41,7 @@ export default function AllTopics(){
         <Nav1 />
         <div className="container">
         <br/><br/>
-        <h1><center> All Topics </center></h1>
+        <h1><center> All Accepted Topics </center></h1>
         <br/><br/>
 
         <div className="row g-3">

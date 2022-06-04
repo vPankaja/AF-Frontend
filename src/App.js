@@ -17,6 +17,7 @@ import CreateMarking from "./components/ADMIN/createMarking/createMarking";
 import AllMarkings from "./components/ADMIN/allMarkings/allMarkings";
 import CreateSubType from "./components/ADMIN/createSubType/createSubType";
 import AllSubTypes from "./components/ADMIN/allSubTypes/allSubTypes";
+import AllAllocatedPM  from "./components/ADMIN/allocatedPanel/allocatedPanel";
 
 import SupHome from "./components/supervisor/SupHome";
 import SupEvaluation from "./components/supervisor/SupEvaluation";
@@ -37,6 +38,7 @@ import AllocatePM from "./components/ADMIN/allocatePM/allocataPM";
 import LandingScreen from "./components/landingpage/landingpage";
 import Register from "./components/Register/Register";
 import AllTopics from "./components/ADMIN/alltopics/alltopics";
+
 
 class App extends Component {
   constructor(props) {
@@ -69,6 +71,7 @@ class App extends Component {
           <Route path="/studentRegister" exact element={<StudentRegister />} />
 
           <Route path="/allusers" element={<AllUsers />} />
+          <Route path="/allallocatedpanels" element={<AllAllocatedPM />} />
           <Route path="/studentMain" element={<StudentMain />} />
           <Route path="/groupRegister" element={<CreateStudentGroup />} />
           <Route path="/requestTopic" element={<RequestResearch />} />
