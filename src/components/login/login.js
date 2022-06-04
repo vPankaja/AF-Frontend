@@ -46,18 +46,15 @@ export default function UserLogin() {
       swal({
         title: "Success",
         text: "Admin Login Successfully",
-        icon:  "success",
-        type: "success"
-      }).then(function(){
-        window.location.replace("/allusers");
-      })
-      
-    } 
-    else if (type == "STUDENT") {
-      window.location.replace("/studentMain");
-    }
-    else if (type == "STAFF") {
-      window.location.replace("/staffview");
+        icon: "success",
+        type: "success",
+      }).then(function () {
+        location.replace("/allusers");
+      });
+    } else if (type == "STUDENT") {
+      location.replace("/studentMain");
+    } else if (type == "STAFF") {
+      location.replace("/staffview");
     }
   };
 
@@ -71,63 +68,64 @@ export default function UserLogin() {
 
   return (
     <>
-    
-    <Nav2 />
-    <div className="container">
-    <br/><br/>
-      <h2>
-        <center>Login</center>
-      </h2>
-      <br/>
-    <form onSubmit={handleSubmit}>
-  <div class="form-group">
-  <label for="email" className="form-label">
-            Email
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Enter email address"
-            class="form-control"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-  </div>
-  <br/>
-  <div class="form-group">
-  <label for="password" className="form-label">
-            Password
-          </label>
-          <input
-            required
-            type="password"
-            placeholder="Enter password"
-            class="form-control"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-  </div>
-  <br/>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+      <Nav2 />
+      <div className="container">
+        <br />
+        <br />
+        <h2>
+          <center>Login</center>
+        </h2>
+        <br />
+        <form onSubmit={handleSubmit}>
+          <div class="form-group">
+            <label for="email" className="form-label">
+              Email
+            </label>
+            <input
+              required
+              type="text"
+              placeholder="Enter email address"
+              class="form-control"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="password" className="form-label">
+              Password
+            </label>
+            <input
+              required
+              type="password"
+              placeholder="Enter password"
+              class="form-control"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </form>
 
-
-  <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{message}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Login</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{message}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </>
   );

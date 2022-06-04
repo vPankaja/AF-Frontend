@@ -54,9 +54,7 @@ export default function AllTopics(){
         }}/>
         </div>
 
-        <div className="col-sm">
-        <h5>Pending Topics Count : {topics.length}</h5>
-        </div>
+
         </div>
 
         <br></br>
