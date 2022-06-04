@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Nav1 from "../../Navbar";
+import Nav1 from "../AdminNavbar";
 
 export default function CreateMarking() {
   const [moduleName, setMName] = useState("");

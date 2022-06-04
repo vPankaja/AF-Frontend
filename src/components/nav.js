@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./nav.css";
-// import { LinkContainer } from "react-router-bootstrap";
 import { NavDropdown } from "react-bootstrap";
 import logo from './ADMIN/logo.png'
 
@@ -55,9 +54,7 @@ function Nav() {
                 title={userInfo.name}
                 id="username"
               >
-                {/* <LinkContainer to="/profile"> */}
                 <NavDropdown.Item class="link-dark">Profile</NavDropdown.Item>
-                {/* </LinkContainer> */}
                 <NavDropdown.Item onClick={handelLogout}>
                   <li className="link">logout</li>
                 </NavDropdown.Item>
@@ -72,11 +69,9 @@ function Nav() {
 
             {userInfo && userInfo.role == "ADMIN" && (
               <NavDropdown className="link" title="Admin">
-                {/* <LinkContainer to="/roomManagement"> */}
                 <NavDropdown.Item class="link-dark">
                   Room Management
                 </NavDropdown.Item>
-                {/* </LinkContainer> */}
               </NavDropdown>
             )}
           </ul>

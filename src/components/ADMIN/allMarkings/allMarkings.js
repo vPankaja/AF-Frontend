@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../user.css'
 import { Button } from "@material-ui/core";
-import '../../user.css';
 import { Link} from 'react-router-dom'
-import Nav1 from "../../Navbar";
+import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
 
 export default function AllMarkings(){
