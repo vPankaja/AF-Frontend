@@ -39,6 +39,12 @@ import LandingScreen from "./components/landingpage/landingpage";
 import Register from "./components/Register/Register";
 import AllTopics from "./components/ADMIN/alltopics/alltopics";
 
+import PanelEveHome from "./components/PanelMember/PanelEveHome";
+import PanelEveEdit from "./components/PanelMember/PanelEveEdit";
+import PanelEveOne from "./components/PanelMember/PanelEveOne";
+import EveByPanel from "./components/PanelMember/EveByPanel";
+import PanelHome from "./components/PanelMember/PanelHome";
+
 
 class App extends Component {
   constructor(props) {
@@ -98,6 +104,12 @@ class App extends Component {
           <Route path="/SupEvaEdit/:id" element={<SupEvaEdit />} />
           <Route path="/SupEvaOneDetail/:id" element={<SupEvaOneDetail />} />
           <Route path="/SupTopic" element={<SupTopic />} />
+
+          <Route path="/PanelEveHome" element={<PanelEveHome />} />
+          <Route path="/newEvaluationPanel" element={<EveByPanel />} />
+          <Route path="/PanelevaluationEdit/:id" element={<PanelEveEdit />} />
+          <Route path="/CheckOnePanelEve/:id" element={<PanelEveOne />} />
+          <Route path="/PanelHome" element={<PanelHome />} />
         </Routes>
       </Router>
     );
