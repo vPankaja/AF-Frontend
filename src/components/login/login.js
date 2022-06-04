@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
+import Nav2 from "./loginNavbar";
 
 export default function UserLogin() {
   const [email, setEmail] = useState("");
@@ -61,17 +62,18 @@ export default function UserLogin() {
   }, []);
 
   return (
+    <>
+    
+    <Nav2 />
     <div className="container">
-      <br/><br/>
+    <br/><br/>
       <h2>
         <center>Login</center>
       </h2>
       <br/>
-
     <form onSubmit={handleSubmit}>
-
-        <div class="mb-3">
-          <label for="email" className="form-label">
+  <div class="form-group">
+  <label for="email" className="form-label">
             Email
           </label>
           <input
@@ -82,10 +84,10 @@ export default function UserLogin() {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-
-        <div class="mb-3">
-          <label for="password" className="form-label">
+  </div>
+  <br/>
+  <div class="form-group">
+  <label for="password" className="form-label">
             Password
           </label>
           <input
@@ -96,20 +98,13 @@ export default function UserLogin() {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <div>
-          <input
-            required
-            type="submit"
-            placeholder="Login"
-            class="form-control"
-          />
-        </div>
-      </form>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-      {/* Dialogbox */}
 
-      <Modal
+  <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -125,8 +120,8 @@ export default function UserLogin() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
-
+      </div>
+    </>
   );
 }
 
