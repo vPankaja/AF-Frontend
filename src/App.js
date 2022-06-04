@@ -25,6 +25,7 @@ import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
 import SubmitDocument from "./components/submitDocuments/submitDocuments";
+import ReRequestResearch from "./components/ReRequestTopic/reRequestTopic";
 
 
 class App extends Component {
@@ -50,6 +51,7 @@ class App extends Component {
           <Route path="/checkTopicStatus" element={<CheckTopicStatus />} />
           <Route path="/requestCoSupervisor/:id" element={<RequestCoSupervisor />} />
           <Route path="/submitDoc/:id" element={<SubmitDocument />} />
+          <Route path="/rerequestTopic/:id" element={<ReRequestResearch />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
           <Route path="/allmarkings" element={<AllMarkings />} />

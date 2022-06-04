@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Nav1 from '../StudentNavbar';
 
 export default function CheckTopicStatus() {
+  const [rerequest, setReRequest] = useState(false);
   const [group, setGroup] = useState("");
   const [research, setResearch] = useState("");
 
@@ -20,6 +22,25 @@ export default function CheckTopicStatus() {
       });
   }
 
+  function checkRejected() {
+    if(research.status == "Reject") {
+      setReRequest(true);
+    }
+  }
+
+
+  const SetButton = () => (
+    <div>
+    <Link to={"/rerequestTopic/" + research._id}>
+        <button
+          class="btn btn-danger me-5 ms-5 rounded-pill"
+        >
+          Re-Request Topic
+        </button>
+      </Link>
+      </div>
+  );
+
   async function getResearch(groupName) {
     await axios
       .get(`http://localhost:6500/student//getResearchByGroup/${groupName}`)
@@ -33,8 +54,13 @@ export default function CheckTopicStatus() {
     getStudentGroup();
   }, []);
 
+  useEffect(() => {
+    checkRejected();
+  }, [research]);
+
   return (
     <>
+      <Nav1/>
       <div>
         <br />
         <br />
@@ -100,6 +126,11 @@ export default function CheckTopicStatus() {
                     Submit Document
                   </button>
                 </Link>
+              </div>
+              <div className="col-sm">
+                  {
+                    rerequest ? <SetButton /> : null
+                  }
               </div>
             </div>
           </div>

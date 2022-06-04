@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Nav1 from '../StudentNavbar';
 
 export default function SubmitDocument() {
     const { id } = useParams();
@@ -83,6 +84,7 @@ export default function SubmitDocument() {
 
   return (
     <>
+    <Nav1 />
       <div>
         <div className="container">
           <form onSubmit={sendData}>
