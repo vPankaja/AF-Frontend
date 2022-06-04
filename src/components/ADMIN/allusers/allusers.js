@@ -37,7 +37,7 @@ export default function AllUsers(){
           })
           .then((willDelete) => {
                 if(willDelete){
-            axios.delete(`http://localhost:6500/user/delete/${id}`).then(()=>{
+            axios.delete(`https://af-backend123.herokuapp.com//user/delete/${id}`).then(()=>{
 
 
             if (willDelete) {
@@ -88,7 +88,7 @@ export default function AllUsers(){
 
     useEffect(()=>{
         function getUsers() {
-            axios.get("http://localhost:6500/user/allusers").then((res)=>{
+            axios.get("https://af-backend123.herokuapp.com//user/allusers").then((res)=>{
                 setUsers(res.data);
             }).catch((err)=>{
                 alert((err.message));

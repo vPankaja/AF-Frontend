@@ -26,7 +26,7 @@ export default function UserLogin() {
     };
 
     await axios
-      .post("http://localhost:6500/user/login", data)
+      .post("https://af-backend123.herokuapp.com//user/login", data)
       .then((res) => {
         console.log(res.data);
         handleRedirectUser(res.data.type);

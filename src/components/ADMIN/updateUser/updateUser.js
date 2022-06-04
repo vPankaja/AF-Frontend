@@ -32,7 +32,7 @@ export default function UpdateUser() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:6500/user/get/${id}`)
+      .get(`https://af-backend123.herokuapp.com//user/get/${id}`)
       .then((res) => {
         var user = res.data;
 
@@ -65,7 +65,7 @@ export default function UpdateUser() {
       type,
     };
 
-    axios.put(`http://localhost:6500/user/update/${id}`, newUser)
+    axios.put(`https://af-backend123.herokuapp.com//user/update/${id}`, newUser)
       .then((willUpdate) => {
         if(willUpdate){
           swal({

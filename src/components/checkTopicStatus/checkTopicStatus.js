@@ -11,7 +11,7 @@ export default function CheckTopicStatus() {
   async function getStudentGroup() {
     const email = JSON.parse(localStorage.getItem("user")).email;
     await axios
-      .get(`http://localhost:6500/student/getGroup/${email}`)
+      .get(`https://af-backend123.herokuapp.com//student/getGroup/${email}`)
       .then((res) => {
         setGroup(res.data);
         // console.log(res.data.name)
@@ -43,7 +43,7 @@ export default function CheckTopicStatus() {
 
   async function getResearch(groupName) {
     await axios
-      .get(`http://localhost:6500/student//getResearchByGroup/${groupName}`)
+      .get(`https://af-backend123.herokuapp.com//student//getResearchByGroup/${groupName}`)
       .then((res) => {
         console.log(res.data);
         setResearch(res.data);
