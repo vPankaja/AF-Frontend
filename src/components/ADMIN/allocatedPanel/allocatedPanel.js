@@ -37,7 +37,7 @@ export default function AllAllocatedPM(){
           })
           .then((willDelete) => {
                 if(willDelete){
-            axios.delete(`http://localhost:6500//APannel/deleteAPmember/${id}`).then(()=>{
+            axios.delete(`http://localhost:6500/APannel/deleteAPmember/${id}`).then(()=>{
 
 
             if (willDelete) {
@@ -86,7 +86,7 @@ export default function AllAllocatedPM(){
 
     useEffect(()=>{
         function getPanelM() {
-            axios.get("http://localhost:6500//APannel/allAPmembers").then((res)=>{
+            axios.get("http://localhost:6500/APannel/allAPmembers").then((res)=>{
                 setPanelM(res.data);
             }).catch((err)=>{
                 alert((err.message));

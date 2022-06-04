@@ -41,7 +41,7 @@ export default function PanelEveOne()  {
 
          useEffect(function effectFunction() {
              console.log("get ID",id);
-            axios.get(`http://localhost:6500/PanelEve/getOneDetail/${id?.id}`)
+            axios.get(`http://localhost:6500PanelEve/getOneDetail/${id?.id}`)
             .then(res=>{
                 console.log("data",res);
                 setGroupname(res.data.getOneDetail.Groupname);

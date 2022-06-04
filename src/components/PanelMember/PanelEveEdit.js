@@ -88,7 +88,7 @@ export default function SupervEveEdit()  {
       
 
          console.log(id)
-         await axios.put(`http://localhost:6500/PanelEve/stdDetail/update/${id?.id}`,paneleve)
+         await axios.put(`http://localhost:6500PanelEve/stdDetail/update/${id?.id}`,paneleve)
          .then(res=>{
              console.log("return data",res);
             alert("Update Successfull!!");
@@ -103,7 +103,7 @@ export default function SupervEveEdit()  {
 
          useEffect(function effectFunction() {
              console.log("get ID",id);
-            axios.get(`http://localhost:6500/PanelEve/getOneDetail/${id?.id}`)
+            axios.get(`http://localhost:6500PanelEve/getOneDetail/${id?.id}`)
             .then(res=>{
               console.log("data",res);
               setGroupname(res.data.getOneDetail.Groupname);

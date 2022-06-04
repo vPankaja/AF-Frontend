@@ -34,7 +34,7 @@ export default function AllSubTypes(){
           })
           .then((willDelete) => {
                 if(willDelete){
-            axios.delete(`http://localhost:6500//subtype/deleteSubType/${id}`).then(()=>{
+            axios.delete(`http://localhost:6500/subtype/deleteSubType/${id}`).then(()=>{
 
 
             if (willDelete) {
@@ -57,7 +57,7 @@ export default function AllSubTypes(){
 
     useEffect(()=>{
         function getSubTypes() {
-            axios.get("http://localhost:6500//subtype/allSubTypes").then((res)=>{
+            axios.get("http://localhost:6500/subtype/allSubTypes").then((res)=>{
                 setSubTypes(res.data);
             }).catch((err)=>{
                 alert((err.message));

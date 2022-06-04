@@ -15,7 +15,7 @@ export default function RequestCoSupervisor() {
     const [coSupervisor, setCoSupervisor] = useState("");
 
     function getUsers() {
-        axios.get("http://localhost:6500//user/allusers").then((res)=>{
+        axios.get("http://localhost:6500/user/allusers").then((res)=>{
             setUsers(res.data);
         }).catch((err)=>{
             alert((err.message));
@@ -30,7 +30,7 @@ export default function RequestCoSupervisor() {
             id,
             coSupervisor
         }
-        axios.post("http://localhost:6500//student/assingCoSup", coSupSave).then((res) => {
+        axios.post("http://localhost:6500/student/assingCoSup", coSupSave).then((res) => {
             Swal.fire("Success", "CoSupervisor requested successfully", "success").then(() => {
                 window.location.href = "/studentMain";
             })
@@ -39,7 +39,7 @@ export default function RequestCoSupervisor() {
     }
 
     function getResearch() {
-        axios.get(`http://localhost:6500//student/getResearchById/${id}`).then((res) => {
+        axios.get(`http://localhost:6500/student/getResearchById/${id}`).then((res) => {
             setResearch(res.data);
         })
     }

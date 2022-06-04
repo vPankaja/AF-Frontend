@@ -168,7 +168,7 @@ onSubmit=(e)=>{
 
 
   //save data
-  axios.post("http://localhost:6500/PanelEve/savePost",data).then((res) =>{
+  axios.post("http://localhost:6500PanelEve/savePost",data).then((res) =>{
     if(res.data.success){
       this.setState(
         {
