@@ -50,6 +50,9 @@ export default function UserLogin() {
     else if (type == "STAFF") {
       window.location.replace("/staffview");
     }
+    else if (type == "SUPERVISOR") {
+      window.location.replace("/SupHome");
+    }
   };
 
   useEffect(() => {

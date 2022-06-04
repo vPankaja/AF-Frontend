@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Navbar, Container, Nav } from "react-bootstrap";
 import axios from 'axios';
 export default class SupEvaAdd extends Component {
  
@@ -316,7 +317,16 @@ onSubmit=(e)=>{
       
 
 <div className="edit" style={{ backgroundColor:"#FFE9EE"}}>
-       
+<Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">Supervisor Home</Navbar.Brand>&nbsp;&nbsp;&nbsp;
+          <Nav className="me-auto">
+            <Nav.Link href="/SupTopic">Topics</Nav.Link>&nbsp;&nbsp;&nbsp;&nbsp;
+            <Nav.Link href="/SupEvalution">Document Evaluation</Nav.Link>&nbsp;&nbsp;&nbsp;
+            <Nav.Link href="#pricing">Documents</Nav.Link>&nbsp;&nbsp;&nbsp;
+          </Nav>
+        </Container>
+      </Navbar>
        <div className="col-md-8 mt-4 mx-auto" >
        <div style={{height:'80px', width:'100%', marginTop:'-20px'}}>
                <br/>

@@ -28,12 +28,11 @@ import SupEvaAdd from "./components/supervisor/SupEvaAdd";
 import SupEvaEdit from "./components/supervisor/SupEvaEdit";
 import SupEvaOneDetail from "./components/supervisor/SupEvaOneDetail";
 import SupTopic from "./components/supervisor/SupTopic";
+import SupDocument from "./components/supervisor/SupDocument";
 
 import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
-
-
 
 class App extends Component {
   constructor(props) {
@@ -70,6 +69,7 @@ class App extends Component {
           <Route path="/SupEvaEdit/:id" element={<SupEvaEdit/>} />
           <Route path="/SupEvaOneDetail/:id" element={<SupEvaOneDetail/>} />
           <Route path="/SupTopic" element={<SupTopic/>} />
+          <Route path="/SupDocument" element={<SupDocument/>} />
         </Routes>
       </Router>
     );
