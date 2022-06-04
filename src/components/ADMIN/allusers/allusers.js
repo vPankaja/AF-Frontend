@@ -3,11 +3,11 @@ import axios from "axios";
 import '../user.css'
 import { Button } from "@material-ui/core";
 import { Link} from 'react-router-dom'
-import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
 import jspdf from 'jspdf'
 import 'jspdf-autotable'
 import img from '../logo.png';
+import Nav1 from "../AdminNavbar";
 
 export default function AllUsers(){
 
@@ -89,14 +89,17 @@ export default function AllUsers(){
         <>
         <Nav1 />
         <div className="container">
+
         <br/><br/>
-        <h1><center> All Users </center></h1>
+        <h3><center> All Users </center></h3>
         <br/><br/> 
 
-        <div className="ms-auto">
-        <Link to={"/"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
 
-        <Button type="button" class="btn btn-outline-warning" onClick={() =>  generatePDF(users)}>Generate Report</Button></div>
+        <Link to={"/userreg"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
+
+        <Button style={{padding:'Right'}}type="button" class="btn btn-outline-warning" onClick={() =>  generatePDF(users)}>Generate Report</Button>
+
+        
 
         <div className="row g-3">
         <div className="col-sm-7">
