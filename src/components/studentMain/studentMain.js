@@ -18,60 +18,42 @@ export default function StudentMain() {
     window.location.href = "/requestTopic";
   }
 
-  function requestCoSupervisor() {}
-
-  function submitDocs() {}
-
-  function downloadTemps() {}
-
   return (
     <>
       <br />
       <br />
-      <div className="buttons">
-        <button
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">
+          <button
           type="button"
           class="btn btn-info buttonClass"
           onClick={studentGroup}
         >
           CREATE STUDENT GROUP
         </button>
-        <br />
-        <br />
-        <button
+          </div>
+          <div className="col-sm">
+          <button
           type="button"
           class="btn btn-info buttonClass"
           onClick={registerResearch}
         >
           CHECK TOPIC STATUS
         </button>
-        <br />
-        <br />
-        <button
+          </div>
+          <div className="col-sm">
+          <button
           type="button"
           class="btn btn-info buttonClass"
           onClick={requestSupervisor}
         >
           REQUEST SUPERVISOR
         </button>
+          </div>
+        </div>
+        
         <br />
-        <br />
-        <button
-          type="button"
-          class="btn btn-info buttonClass"
-          onClick={submitDocs}
-        >
-          SUBMIT DOCUMENTS
-        </button>
-        <br />
-        <br />
-        <button
-          type="button"
-          class="btn btn-info buttonClass"
-          onClick={downloadTemps}
-        >
-          DOWNLOAD TEMPLATES
-        </button>
         </div>
         <br />
         <br />
