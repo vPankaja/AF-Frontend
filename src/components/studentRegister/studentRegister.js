@@ -24,7 +24,7 @@ export default function StudentRegister() {
     axios
         .post("http://localhost:6500/student/registerStudent", newStudent)
         .then((res) => {
-          localStorage.setItem("userInfo", JSON.stringify(res.data));
+          localStorage.setItem("user", JSON.stringify(res.data));
           window.location.href = "/studentMain";
         })
         .catch((err) => {

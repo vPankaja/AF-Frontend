@@ -32,6 +32,9 @@ import SupTopic from "./components/supervisor/SupTopic";
 import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
+
+import SubmitDocument from "./components/submitDocuments/submitDocuments";
+
 import UploadDocument from "./components/ADMIN/uploadDocument/uploadDocument";
 import AllocatePM from "./components/ADMIN/allocatePM/allocataPM";
 import LandingScreen from "./components/landingpage/landingpage";
@@ -64,6 +67,7 @@ class App extends Component {
           <Route path="/requestTopic" element={<RequestResearch />} />
           <Route path="/checkTopicStatus" element={<CheckTopicStatus />} />
           <Route path="/requestCoSupervisor/:id" element={<RequestCoSupervisor />} />
+          <Route path="/submitDoc/:id" element={<SubmitDocument />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
           <Route path="/allmarkings" element={<AllMarkings />} />

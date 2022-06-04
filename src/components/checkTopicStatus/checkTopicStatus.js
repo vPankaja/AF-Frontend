@@ -7,7 +7,7 @@ export default function CheckTopicStatus() {
   const [research, setResearch] = useState("");
 
   async function getStudentGroup() {
-    const email = JSON.parse(localStorage.getItem("userInfo")).email;
+    const email = JSON.parse(localStorage.getItem("user")).email;
     await axios
       .get(`http://localhost:6500/student/getGroup/${email}`)
       .then((res) => {
@@ -32,7 +32,6 @@ export default function CheckTopicStatus() {
   useEffect(() => {
     getStudentGroup();
   }, []);
-
 
   return (
     <>
@@ -74,15 +73,36 @@ export default function CheckTopicStatus() {
           <br />
           <br />
           <br />
-          <Link to={"/requestCoSupervisor/"+research._id}>
-          <button
-            class="btn btn-success me-5 ms-5 rounded-pill"
-            disabled={
-              research.status == "pending" || research.status == "rejected"
-            }
-          >
-            Request Co-Supervisor
-          </button></Link>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm">
+                <Link to={"/requestCoSupervisor/" + research._id}>
+                  <button
+                    class="btn btn-success me-5 ms-5 rounded-pill"
+                    disabled={
+                      research.status == "pending" ||
+                      research.status == "Reject"
+                    }
+                  >
+                    Request Co-Supervisor
+                  </button>
+                </Link>
+              </div>
+              <div className="col-sm">
+                <Link to={"/submitDoc/" + research._id}>
+                  <button
+                    class="btn btn-success me-5 ms-5 rounded-pill"
+                    disabled={
+                      research.status == "pending" ||
+                      research.status == "Reject"
+                    }
+                  >
+                    Submit Document
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </card>
       </div>
     </>
