@@ -9,6 +9,19 @@ export default function CreateSubType() {
   const [deadline,setDeadline] = useState("");
   const [explainST,setExplainST] = useState("");
 
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
+
   function sendData(e){
 
     e.preventDefault();

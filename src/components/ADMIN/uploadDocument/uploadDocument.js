@@ -6,6 +6,19 @@ export default function UploadDocument() {
   const [assignmentname, setAName] = useState("");
   const [document, setDocument] = useState("");
 
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
+
   const handleFileUpload = (event) => {
     event.persist();
 

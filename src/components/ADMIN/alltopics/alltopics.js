@@ -11,6 +11,19 @@ export default function AllTopics(){
     const [topics, setTopics] = useState([]);
     const [searchTerm, setsearchTerm] = useState("");
 
+    const handelLogout = () => {
+        localStorage.clear();
+        window.location.href = "/login";
+      };
+    
+      useEffect(() => {
+        var userData = localStorage.getItem("user");
+    
+        if (!userData) {
+          handelLogout();
+        }
+      }, []);
+
     useEffect(()=>{
         function getTopics() {
             axios.get("http://localhost:6500/student/allTopics").then((res)=>{

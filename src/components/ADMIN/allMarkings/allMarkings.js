@@ -11,6 +11,19 @@ export default function AllMarkings(){
     const [markings, setMarkings] = useState([]);
     const [searchTerm, setsearchTerm] = useState("");
 
+    const handelLogout = () => {
+        localStorage.clear();
+        window.location.href = "/login";
+      };
+    
+      useEffect(() => {
+        var userData = localStorage.getItem("user");
+    
+        if (!userData) {
+          handelLogout();
+        }
+      }, []);
+
     const deleteMarking=(id) =>{
         swal({
             title: "Are you sure?",
