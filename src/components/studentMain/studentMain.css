@@ -102,3 +102,13 @@
     margin-left: 200px;
     margin-top: 30px;
   }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .buttonClass {
+    width: 100%;
+    margin: 5px; /* or whatever you like */
+  }

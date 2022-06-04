@@ -46,7 +46,7 @@ export default function UserLogin() {
       window.location.replace("/allusers");
     } 
     else if (type == "STUDENT") {
-      window.location.replace("/studentview");
+      window.location.replace("/studentMain");
     }
     else if (type == "STAFF") {
       window.location.replace("/staffview");
