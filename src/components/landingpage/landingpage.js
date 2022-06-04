@@ -18,7 +18,7 @@ const LandingScreen = () => {
                   <div className="landing row justify-content-center text-center bg-image">
                         <div className="col-md-9 my-auto" style={{ borderRight: '8px solid white' }}>
                               <h2 style={{ color: "white",fontSize: "110px" }} data-aos='zoom-in'>Research Management System</h2>
-                              <h1 style={{ color: "white" }} data-aos='zoom-out' >Easiest Way to Mange Your Research Work.</h1>
+                              <h1 style={{ color: "white" }} data-aos='zoom-out' >The Easiest Way to Manage Your Research.</h1>
                               <Link to="/login">
                                     <button button type="button" class="btn btn-success">Get Started</button>
                               </Link>
