@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../user.css'
 import { Button } from "@material-ui/core";
-import '../../user.css';
 import { Link} from 'react-router-dom'
+import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
+import jspdf from 'jspdf'
+import 'jspdf-autotable'
+import img from '../logo.png';
 
 export default function AllUsers(){
 
@@ -41,6 +45,34 @@ export default function AllUsers(){
     
     }
 
+    const generatePDF = tickets => {
+ 
+        const doc = new jspdf();
+        const date = Date().split(" ");
+        const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+        const tableColumn = ["User Name","NIC", "Gender", "Contact No", "Email","User Type"];
+        const tableRows = [];
+    
+        tickets.map(ticket => {
+            const ticketData = [
+                ticket.name,
+                ticket.nic,
+                ticket.gender,
+                ticket.contactNo,
+                ticket.email,
+                ticket.type
+
+            ];
+            tableRows.push(ticketData);
+        })
+        doc.text("User Details Report", 14, 15).setFontSize(12);
+        doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
+        doc.addImage(img, 'JPEG', 170, 8, 22, 22);
+        // right down width height
+        doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8, }, startY: 35 });
+        doc.save(`User_Details_Report.pdf`);
+      };
+
     useEffect(()=>{
         function getUsers() {
             axios.get("http://localhost:6500/user/allusers").then((res)=>{
@@ -55,14 +87,16 @@ export default function AllUsers(){
 
     return(
         <>
-        <div className="vlft">
-        <div className="vcard" >
-
-        <br/>
-        <br/>
+        <Nav1 />
+        <div className="container">
+        <br/><br/>
         <h1><center> All Users </center></h1>
-        <br/>
-        <br/>
+        <br/><br/> 
+
+        <div className="ms-auto">
+        <Link to={"/"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
+
+        <Button type="button" class="btn btn-outline-warning" onClick={() =>  generatePDF(users)}>Generate Report</Button></div>
 
         <div className="row g-3">
         <div className="col-sm-7">
@@ -79,10 +113,9 @@ export default function AllUsers(){
         </div>
         </div>
 
-        <br></br>
-        <br></br>
+        <br/><br/>
 
-        <div className="vcard2" >
+
         <table className="table table-bordered">
         <table className="table table-hover" >
                     <thead>
@@ -133,15 +166,8 @@ export default function AllUsers(){
                     </tbody>
                     </table>
                 </table>
-        </div>
-        <br/>
-        <br/>
-        <Link to={"/"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
-        <br/><br/>
-</div>
-</div>
-
-</>
+           </div>
+        </>
 
     )
 

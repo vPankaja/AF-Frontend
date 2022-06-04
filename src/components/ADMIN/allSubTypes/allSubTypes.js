@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../user.css'
 import { Button } from "@material-ui/core";
-import '../../user.css';
 import { Link} from 'react-router-dom'
+import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
 
 export default function AllSubTypes(){
@@ -55,14 +56,13 @@ export default function AllSubTypes(){
 
     return(
         <>
-        <div className="vlft">
-        <div className="vcard" >
-
-        <br/>
-        <br/>
+        <Nav1 />
+        <div className="container">
+        <br/><br/>
         <h1><center> All Submission Types </center></h1>
-        <br/>
-        <br/>
+        <br/><br/>
+
+        <Link to={"/createSubType"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
 
         <div className="row g-3">
         <div className="col-sm-7">
@@ -75,14 +75,13 @@ export default function AllSubTypes(){
         </div>
 
         <div className="col-sm">
-        <h5>Marking Scheme Count : {subTypes.length}</h5>
+        <h5>Submission Type Count : {subTypes.length}</h5>
         </div>
         </div>
 
         <br></br>
         <br></br>
 
-        <div className="vcard2" >
         <table className="table table-bordered">
         <table className="table table-hover" >
                     <thead>
@@ -106,7 +105,7 @@ export default function AllSubTypes(){
                                      val.subName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.submissionType.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.deadline.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.specialNote.toLowerCase().includes(searchTerm.toLowerCase()) 
+                                     val.explainST.toLowerCase().includes(searchTerm.toLowerCase()) 
 
                                 ){
                                     return val;
@@ -116,7 +115,7 @@ export default function AllSubTypes(){
                                     <td ><center> {f.subName} </center></td>
                                     <td ><center> {f.submissionType} </center></td>
                                     <td ><center> {f.deadline} </center></td>
-                                    <td ><center> {f.specialNote} </center></td>
+                                    <td ><center> {f.explainST} </center></td>
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteSubType(f._id)}> Delete </Button></td>
                                         </tr>
         
@@ -127,12 +126,6 @@ export default function AllSubTypes(){
                     </table>
                 </table>
                 </div>
-                <br/>
-                <br/>
-                <Link to={"/createSubType"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
-                <br/><br/>
-</div>
-</div>
 
 </>
 

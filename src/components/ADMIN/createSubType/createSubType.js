@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Nav1 from "../AdminNavbar";
 
 export default function CreateSubType() {
 
   const [subName,setSName] = useState("");
   const [submissionType,setSType] = useState("");
   const [deadline,setDeadline] = useState("");
-  const [specialNote,setSpecialNote] = useState("");
+  const [explainST,setExplainST] = useState("");
+
+  const [pannelMembers,setPannelMembers] = useState([]);
 
   function sendData(e){
 
@@ -16,7 +19,7 @@ export default function CreateSubType() {
         subName,
         submissionType,
         deadline,
-        specialNote,
+        explainST,
     }
 
     axios.post("http://localhost:6500/subtype/createSubType",newSubType).then((willcreate)=>
@@ -38,10 +41,19 @@ export default function CreateSubType() {
 
   }
 
+  useEffect(() => {
+    // var pannelMembers = axios.post("http://localhost:6500/subtype/createSubType")
+
+    // setPannelMembers(pannelMembers)
+
+  }, [])
+  
+
 
 
   return (
-
+    <>
+    <Nav1 />
     <div className="container">
       <form onSubmit={sendData}>
         <br/>
@@ -62,7 +74,7 @@ export default function CreateSubType() {
         <br />
         <div class="form-group">
           <label for="submissionType">Submission Type</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="submissionType"
@@ -70,7 +82,18 @@ export default function CreateSubType() {
             onChange={(e)=>{
               setSType(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            {/* {
+              pannelMembers.forEach(element => (
+                <option >{element.name}</option>
+              ))
+            } */}
+            <option >File Submission</option>
+            <option >Text Submission</option>
+            <option >On Paper Submission</option>
+            <option >Observed In Person</option>
+            </select>
         </div>
         <br />
         <div class="form-group">
@@ -86,16 +109,16 @@ export default function CreateSubType() {
         </div>
         <br />
         <div class="form-group">
-          <label for="specialNote">Special Note (Optional)</label>
+          <label for="explainST">Explain Submission Type</label>
           <textarea
             type="text"
             class="form-control"
-            id="specialNote"
-            placeholder="Any Special Note"
+            id="explainST"
+            placeholder="Explain the Submission Type"
             onChange={(e)=>{
-              setSpecialNote(e.target.value);
+              setExplainST(e.target.value);
             }}
-            />
+            required/>
         </div>
         <br />
         
@@ -105,5 +128,6 @@ export default function CreateSubType() {
         </button>
       </form>
     </div>
+    </>
   );
 }

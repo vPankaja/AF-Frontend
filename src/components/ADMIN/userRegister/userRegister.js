@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
 
 export default function UserRegister() {
@@ -11,6 +12,19 @@ export default function UserRegister() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [type,setType] = useState("");
+
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
 
   function sendData(e){
 
@@ -48,7 +62,8 @@ export default function UserRegister() {
 
 
   return (
-
+    <>
+    <Nav1 />
     <div className="container">
       <form onSubmit={sendData}>
         <br/>
@@ -82,7 +97,7 @@ export default function UserRegister() {
         <br />
         <div class="form-group">
           <label for="gender">Gender</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="gender"
@@ -90,7 +105,11 @@ export default function UserRegister() {
             onChange={(e)=>{
               setGender(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            <option >Male</option>
+            <option >Female</option>
+            </select>
         </div>
         <br />
         <div class="form-group">
@@ -134,7 +153,7 @@ export default function UserRegister() {
         <br />
         <div class="form-group">
           <label for="type">User Type</label>
-          <input
+          <select
             type="text"
             class="form-control"
             id="type"
@@ -142,7 +161,12 @@ export default function UserRegister() {
             onChange={(e)=>{
               setType(e.target.value);
             }}
-            required/>
+            required>
+            <option selected></option>
+            <option >SUPERVISOR</option>
+            <option >CO-SUPERVISOR</option>
+            <option >PANEL</option>
+            </select>
         </div>
         <br/>
 
@@ -151,5 +175,6 @@ export default function UserRegister() {
         </button>
       </form>
     </div>
+    </>
   );
 }

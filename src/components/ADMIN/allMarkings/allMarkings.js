@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import '../user.css'
 import { Button } from "@material-ui/core";
-import '../../user.css';
 import { Link} from 'react-router-dom'
+import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
 
 export default function AllMarkings(){
@@ -55,14 +56,14 @@ export default function AllMarkings(){
 
     return(
         <>
-        <div className="vlft">
-        <div className="vcard" >
+        <Nav1 />
+        <div className="container">
 
-        <br/>
-        <br/>
+        <br/><br/>
         <h1><center> All Marking Schemes </center></h1>
-        <br/>
-        <br/>
+        <br/><br/>
+
+        <Link to={"/createMarking"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
 
         <div className="row g-3">
         <div className="col-sm-7">
@@ -82,7 +83,6 @@ export default function AllMarkings(){
         <br></br>
         <br></br>
 
-        <div className="vcard2" >
         <table className="table table-bordered">
         <table className="table table-hover" >
                     <thead>
@@ -90,7 +90,6 @@ export default function AllMarkings(){
                             <th><center> Module Name </center></th>
                             <th><center> Assignment Name </center></th>
                             <th><center> Overall Marks </center></th>
-                            <th><center> Marking Description </center></th>
                             <th></th>
                     
                         </tr>
@@ -105,8 +104,8 @@ export default function AllMarkings(){
                                      
                                      val.moduleName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.assignmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.overallMark.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.description.toLowerCase().includes(searchTerm.toLowerCase()) 
+                                     val.overallMark.toLowerCase().includes(searchTerm.toLowerCase())
+
 
                                 ){
                                     return val;
@@ -116,8 +115,6 @@ export default function AllMarkings(){
                                     <td ><center> {f.moduleName} </center></td>
                                     <td ><center> {f.assignmentName} </center></td>
                                     <td ><center> {f.overallMark} </center></td>
-                                    <td ><center> {f.description} </center></td>
-                                    
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteMarking(f._id)}> Delete </Button></td>
                                         </tr>
         
@@ -126,15 +123,9 @@ export default function AllMarkings(){
                             
                     </tbody>
                     </table>
-                </table>
-                </div>
-                <br/>
-                <br/>
-                <Link to={"/createMarking"} ><Button type="button" class="btn btn-primary" > Add New </Button></Link>
-                <br/><br/>
-</div>
-</div>
+                </table>             
 
+</div>
 
 </>
 
