@@ -25,10 +25,13 @@ import SupEvaAdd from "./components/supervisor/SupEvaAdd";
 import SupEvaEdit from "./components/supervisor/SupEvaEdit";
 import SupEvaOneDetail from "./components/supervisor/SupEvaOneDetail";
 import SupTopic from "./components/supervisor/SupTopic";
+import SupDocument from "./components/supervisor/SupDocument";
 
 import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
+
+
 
 import SubmitDocument from "./components/submitDocuments/submitDocuments";
 import ReRequestResearch from "./components/ReRequestTopic/reRequestTopic";
@@ -44,6 +47,7 @@ import PanelEveEdit from "./components/PanelMember/PanelEveEdit";
 import PanelEveOne from "./components/PanelMember/PanelEveOne";
 import EveByPanel from "./components/PanelMember/EveByPanel";
 import PanelHome from "./components/PanelMember/PanelHome";
+
 
 
 class App extends Component {
@@ -94,6 +98,16 @@ class App extends Component {
           <Route path="/createsubType" element={<CreateSubType />} />
           <Route path="/allsubtypes" element={<AllSubTypes />} />
 
+
+          
+          <Route path="/SupHome" element={<SupHome/>} />
+          <Route path="/SupEvalution" element={<SupEvaluation/>} />
+          <Route path="/SupEvaAdd" element={<SupEvaAdd/>}/>
+          <Route path="/SupEvaEdit/:id" element={<SupEvaEdit/>} />
+          <Route path="/SupEvaOneDetail/:id" element={<SupEvaOneDetail/>} />
+          <Route path="/SupTopic" element={<SupTopic/>} />
+          <Route path="/SupDocument" element={<SupDocument/>} />
+
           <Route path="/uploaddocument" element={<UploadDocument />} />
           <Route path="/allocatepm/:id" element={<AllocatePM />} />
           <Route path="/alltopics" element={<AllTopics />} />
@@ -110,6 +124,7 @@ class App extends Component {
           <Route path="/PanelevaluationEdit/:id" element={<PanelEveEdit />} />
           <Route path="/CheckOnePanelEve/:id" element={<PanelEveOne />} />
           <Route path="/PanelHome" element={<PanelHome />} />
+
         </Routes>
       </Router>
     );
