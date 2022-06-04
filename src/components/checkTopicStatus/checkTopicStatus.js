@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Nav1 from '../StudentNavbar';
 
 export default function CheckTopicStatus() {
+  const [rerequest, setReRequest] = useState(false);
   const [group, setGroup] = useState("");
   const [research, setResearch] = useState("");
 
   async function getStudentGroup() {
-    const email = JSON.parse(localStorage.getItem("userInfo")).email;
+    const email = JSON.parse(localStorage.getItem("user")).email;
     await axios
       .get(`http://localhost:6500/student/getGroup/${email}`)
       .then((res) => {
@@ -19,6 +21,25 @@ export default function CheckTopicStatus() {
         alert(err);
       });
   }
+
+  function checkRejected() {
+    if(research.status == "Reject") {
+      setReRequest(true);
+    }
+  }
+
+
+  const SetButton = () => (
+    <div>
+    <Link to={"/rerequestTopic/" + research._id}>
+        <button
+          class="btn btn-danger me-5 ms-5 rounded-pill"
+        >
+          Re-Request Topic
+        </button>
+      </Link>
+      </div>
+  );
 
   async function getResearch(groupName) {
     await axios
@@ -33,9 +54,13 @@ export default function CheckTopicStatus() {
     getStudentGroup();
   }, []);
 
+  useEffect(() => {
+    checkRejected();
+  }, [research]);
 
   return (
     <>
+      <Nav1/>
       <div>
         <br />
         <br />
@@ -74,15 +99,41 @@ export default function CheckTopicStatus() {
           <br />
           <br />
           <br />
-          <Link to={"/requestCoSupervisor/"+research._id}>
-          <button
-            class="btn btn-success me-5 ms-5 rounded-pill"
-            disabled={
-              research.status == "pending" || research.status == "rejected"
-            }
-          >
-            Request Co-Supervisor
-          </button></Link>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm">
+                <Link to={"/requestCoSupervisor/" + research._id}>
+                  <button
+                    class="btn btn-success me-5 ms-5 rounded-pill"
+                    disabled={
+                      research.status == "pending" ||
+                      research.status == "Reject"
+                    }
+                  >
+                    Request Co-Supervisor
+                  </button>
+                </Link>
+              </div>
+              <div className="col-sm">
+                <Link to={"/submitDoc/" + research._id}>
+                  <button
+                    class="btn btn-success me-5 ms-5 rounded-pill"
+                    disabled={
+                      research.status == "pending" ||
+                      research.status == "Reject"
+                    }
+                  >
+                    Submit Document
+                  </button>
+                </Link>
+              </div>
+              <div className="col-sm">
+                  {
+                    rerequest ? <SetButton /> : null
+                  }
+              </div>
+            </div>
+          </div>
         </card>
       </div>
     </>

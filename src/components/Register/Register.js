@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
+import Nav2 from "../login/loginNavbar";
 
-export default function UserRegister() {
+export default function Register() {
 
   const [name,setName] = useState("");
   const [nic,setNIC] = useState("");
@@ -12,19 +12,6 @@ export default function UserRegister() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [type,setType] = useState("");
-
-  const handelLogout = () => {
-    localStorage.clear();
-    window.location.href = "/login";
-  };
-
-  useEffect(() => {
-    var userData = localStorage.getItem("user");
-
-    if (!userData) {
-      handelLogout();
-    }
-  }, []);
 
   function sendData(e){
 
@@ -49,7 +36,7 @@ export default function UserRegister() {
         icon:  "success",
         type: "success"
       }).then(function(){
-        window.location.href="/allusers";
+        window.location.href="/login";
       })
     } else{
       swal("Register User Failed!");
@@ -63,7 +50,7 @@ export default function UserRegister() {
 
   return (
     <>
-    <Nav1 />
+    <Nav2 />
     <div className="container">
       <form onSubmit={sendData}>
         <br/>
@@ -163,9 +150,8 @@ export default function UserRegister() {
             }}
             required>
             <option selected></option>
-            <option >SUPERVISOR</option>
-            <option >CO-SUPERVISOR</option>
-            <option >PANEL</option>
+            <option >ADMIN</option>
+            <option >STUDENT</option>
             </select>
         </div>
         <br/>
@@ -173,7 +159,6 @@ export default function UserRegister() {
         <button type="submit" class="btn btn-primary">
           Submit
         </button>
-        <br/><br/>
       </form>
     </div>
     </>

@@ -11,6 +11,19 @@ export default function AllMarkings(){
     const [markings, setMarkings] = useState([]);
     const [searchTerm, setsearchTerm] = useState("");
 
+    const handelLogout = () => {
+        localStorage.clear();
+        window.location.href = "/login";
+      };
+    
+      useEffect(() => {
+        var userData = localStorage.getItem("user");
+    
+        if (!userData) {
+          handelLogout();
+        }
+      }, []);
+
     const deleteMarking=(id) =>{
         swal({
             title: "Are you sure?",
@@ -87,7 +100,6 @@ export default function AllMarkings(){
         <table className="table table-hover" >
                     <thead>
                         <tr>
-                            <th><center> Module Name </center></th>
                             <th><center> Assignment Name </center></th>
                             <th><center> Overall Marks </center></th>
                             <th></th>
@@ -102,7 +114,6 @@ export default function AllMarkings(){
                                     return val;
                                 } else if(
                                      
-                                     val.moduleName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.assignmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                      val.overallMark.toLowerCase().includes(searchTerm.toLowerCase())
 
@@ -112,7 +123,6 @@ export default function AllMarkings(){
                                 }
                                 }).map(function (f) {
                                         return <tr>
-                                    <td ><center> {f.moduleName} </center></td>
                                     <td ><center> {f.assignmentName} </center></td>
                                     <td ><center> {f.overallMark} </center></td>
                                     <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteMarking(f._id)}> Delete </Button></td>

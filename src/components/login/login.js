@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
+import Nav2 from "./loginNavbar";
 
 export default function UserLogin() {
   const [email, setEmail] = useState("");
@@ -42,13 +43,18 @@ export default function UserLogin() {
 
   const handleRedirectUser = (type) => {
     if (type == "ADMIN") {
-      window.location.replace("/allusers");
-    } 
-    else if (type == "STUDENT") {
-      window.location.replace("/studentview");
-    }
-    else if (type == "STAFF") {
-      window.location.replace("/staffview");
+      swal({
+        title: "Success",
+        text: "Admin Login Successfully",
+        icon: "success",
+        type: "success",
+      }).then(function () {
+        location.replace("/allusers");
+      });
+    } else if (type == "STUDENT") {
+      location.replace("/studentMain");
+    } else if (type == "STAFF") {
+      location.replace("/staffview");
     }
     else if (type == "SUPERVISOR") {
       window.location.replace("/SupHome");
@@ -64,72 +70,67 @@ export default function UserLogin() {
   }, []);
 
   return (
-    <div className="container">
-      <br/><br/>
-      <h2>
-        <center>Login</center>
-      </h2>
-      <br/>
+    <>
+      <Nav2 />
+      <div className="container">
+        <br />
+        <br />
+        <h2>
+          <center>Login</center>
+        </h2>
+        <br />
+        <form onSubmit={handleSubmit}>
+          <div class="form-group">
+            <label for="email" className="form-label">
+              Email
+            </label>
+            <input
+              required
+              type="text"
+              placeholder="Enter email address"
+              class="form-control"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="password" className="form-label">
+              Password
+            </label>
+            <input
+              required
+              type="password"
+              placeholder="Enter password"
+              class="form-control"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </form>
 
-    <form onSubmit={handleSubmit}>
-
-        <div class="mb-3">
-          <label for="email" className="form-label">
-            Email
-          </label>
-          <input
-            required
-            type="text"
-            placeholder="Enter email address"
-            class="form-control"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div class="mb-3">
-          <label for="password" className="form-label">
-            Password
-          </label>
-          <input
-            required
-            type="password"
-            placeholder="Enter password"
-            class="form-control"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            required
-            type="submit"
-            placeholder="Login"
-            class="form-control"
-          />
-        </div>
-      </form>
-
-      {/* Dialogbox */}
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{message}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Login</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{message}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    </>
   );
 }
 

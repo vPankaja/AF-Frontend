@@ -18,7 +18,15 @@ function Nav() {
 
   const handelLogout = () => {
     localStorage.clear();
-    window.location.href = "/login";
+    swal({
+      title: "Success",
+      text: "Admin Login Successfully",
+      icon:  "success",
+      type: "success"
+    }).then(function(){
+      window.location.href = "/login";
+    })
+    
   };
 
   useEffect(() => {
@@ -54,7 +62,6 @@ function Nav() {
                 title={userInfo.name}
                 id="username"
               >
-                <NavDropdown.Item class="link-dark">Profile</NavDropdown.Item>
                 <NavDropdown.Item onClick={handelLogout}>
                   <li className="link">logout</li>
                 </NavDropdown.Item>
@@ -65,14 +72,6 @@ function Nav() {
                   <i class="fa fa-user-circle" aria-hidden="true"></i> Login
                 </a>
               </li>
-            )}
-
-            {userInfo && userInfo.role == "ADMIN" && (
-              <NavDropdown className="link" title="Admin">
-                <NavDropdown.Item class="link-dark">
-                  Room Management
-                </NavDropdown.Item>
-              </NavDropdown>
             )}
           </ul>
         </div>

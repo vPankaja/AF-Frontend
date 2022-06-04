@@ -1,11 +1,10 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Nav1 from "../AdminNavbar";
 
-export default function CreateMarking() {
-  const [assignmentName, setAName] = useState("");
-  const [overallMark, setOMark] = useState("");
-  const [attachment, setAttachment] = useState("");
+export default function UploadDocument() {
+  const [assignmentname, setAName] = useState("");
+  const [document, setDocument] = useState("");
 
   const handelLogout = () => {
     localStorage.clear();
@@ -24,15 +23,15 @@ export default function CreateMarking() {
     event.persist();
 
     let files = event.target.files;
-    setAttachment(files[0]);
+    setDocument(files[0]);
   };
 
   async function sendData(e) {
     e.preventDefault();
 
-    if (attachment) {
+    if (document) {
       var data = new FormData();
-      data.append("attachment", attachment);
+      data.append("attachment", document);
 
       await axios
         .post("http://localhost:6500/api/files/uploadFile", data)
@@ -41,13 +40,12 @@ export default function CreateMarking() {
             console.log(res);
             fileUrl = res.data.path.replace(/\\/g, "/");
 
-            const newMarking = {
-              assignmentName: assignmentName,
-              overallMark: overallMark,
-              attachment: fileUrl,
+            const newDocument = {
+              assignmentname: assignmentname,
+              document: fileUrl,
             };
 
-            await uploadSchemeData(newMarking);
+            await uploadSchemeData(newDocument);
           } else {
             console.log(error);
           }
@@ -56,33 +54,32 @@ export default function CreateMarking() {
           console.log(error);
         });
     } else {
-      const newMarking = {
-        assignmentName: assignmentName,
-        overallMark: overallMark,
-        attachment: fileUrl,
+      const newDocument = {
+        assignmentname: assignmentname,
+        document: "",
       };
 
-      await uploadSchemeData(newMarking);
+      await uploadSchemeData(newDocument);
     }
   }
 
-  async function uploadSchemeData(newMarking) {
-    console.log(newMarking);
+  async function uploadSchemeData(newDocument) {
+    console.log(newDocument);
     await axios
-      .post("http://localhost:6500/marking/createMarking", newMarking)
+      .post("http://localhost:6500/document/uploadDocument", newDocument)
       .then((willcreate) => {
         console.log(willcreate);
         if (willcreate) {
           swal({
             title: "Success",
-            text: "Marking Scheme Successfully Created",
+            text: "Document uploaded Successfully",
             icon: "success",
             type: "success",
           }).then(function () {
-            window.location.href = "/allmarkings";
+            window.location.href = "/uploadDocument";
           });
         } else {
-          swal("Create Marking Scheme Failed!");
+          swal("Document Upload Failed!");
         }
       });
   }
@@ -94,15 +91,15 @@ export default function CreateMarking() {
       <form onSubmit={sendData}>
         <br />
         <center>
-          <h1>Create Marking Scheme</h1>
+          <h1>Upload Document/Presentation Templates</h1>
         </center>
         <br />
         <div class="form-group">
-          <label for="assignmentName">Assignment Name</label>
+          <label for="assignmentname">Assignment Name</label>
           <input
             type="text"
             class="form-control"
-            id="assignmentName"
+            id="assignmentname"
             placeholder="Enter Assignment Name"
             onChange={(e) => {
               setAName(e.target.value);
@@ -112,26 +109,12 @@ export default function CreateMarking() {
         </div>
         <br />
         <div class="form-group">
-          <label for="overallMark">Overall Marks</label>
-          <input
-            type="text"
-            class="form-control"
-            id="overallMark"
-            placeholder="Enter Overall Marks"
-            onChange={(e) => {
-              setOMark(e.target.value);
-            }}
-            required
-          />
-        </div>
-        <br />
-        <div class="form-group">
-          <label for="attachment">Marking Description</label>
+          <label for="document">Document Description</label>
           <input
             type="file"
             class="form-control"
-            id="attachment"
-            placeholder="Select Attachment"
+            id="document"
+            placeholder="Select Document"
             onChange={(e) => handleFileUpload(e)}
           />
         </div>

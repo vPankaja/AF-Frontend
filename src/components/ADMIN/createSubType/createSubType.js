@@ -9,7 +9,18 @@ export default function CreateSubType() {
   const [deadline,setDeadline] = useState("");
   const [explainST,setExplainST] = useState("");
 
-  const [pannelMembers,setPannelMembers] = useState([]);
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
 
   function sendData(e){
 
@@ -40,16 +51,6 @@ export default function CreateSubType() {
     
 
   }
-
-  useEffect(() => {
-    // var pannelMembers = axios.post("http://localhost:6500/subtype/createSubType")
-
-    // setPannelMembers(pannelMembers)
-
-  }, [])
-  
-
-
 
   return (
     <>
@@ -84,11 +85,6 @@ export default function CreateSubType() {
             }}
             required>
             <option selected></option>
-            {/* {
-              pannelMembers.forEach(element => (
-                <option >{element.name}</option>
-              ))
-            } */}
             <option >File Submission</option>
             <option >Text Submission</option>
             <option >On Paper Submission</option>

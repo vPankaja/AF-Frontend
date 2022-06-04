@@ -9,9 +9,9 @@ import 'jspdf-autotable'
 import img from '../logo.png';
 import Nav1 from "../AdminNavbar";
 
-export default function AllUsers(){
+export default function AllAllocatedPM(){
 
-    const [users, setUsers] = useState([]);
+    const [panelm, setPanelM] = useState([]);
     const [searchTerm, setsearchTerm] = useState("");
 
     const handelLogout = () => {
@@ -27,30 +27,30 @@ export default function AllUsers(){
         }
       }, []);
 
-    const deleteUser=(id) =>{
+    const deleteAllocatePanel=(id) =>{
         swal({
             title: "Are you sure?",
-            text: "The User Will be Deleted ",
+            text: "The Allocated Panel Will be Deleted ",
             icon: "warning",
             buttons: true,
             dangerMode: true,
           })
           .then((willDelete) => {
                 if(willDelete){
-            axios.delete(`http://localhost:6500/user/delete/${id}`).then(()=>{
+            axios.delete(`http://localhost:6500/APannel/deleteAPmember/${id}`).then(()=>{
 
 
             if (willDelete) {
               swal({
-                title: "The User has been Removed!",
-                text: "You can Continue with Your Other Users.",
+                title: "The Allocated Panel has been Removed!",
+                text: "You can Continue with Your Other Panels.",
                 icon:  "success",
                 type: "success"
               }).then(function(){
-                window.location.href="/allusers";
+                window.location.href="/allallocatedpanels";
                })
             } else {
-              swal("Request Is Not Deleted");
+              swal("The Allocated Panel Is Not Deleted");
             }
           });
         }
@@ -63,38 +63,36 @@ export default function AllUsers(){
         const doc = new jspdf();
         const date = Date().split(" ");
         const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-        const tableColumn = ["User Name","NIC", "Gender", "Contact No", "Email","User Type"];
+        const tableColumn = ["Group ID","Topic", "Panel Member"];
         const tableRows = [];
     
         tickets.map(ticket => {
             const ticketData = [
-                ticket.name,
-                ticket.nic,
-                ticket.gender,
-                ticket.contactNo,
-                ticket.email,
-                ticket.type
+                ticket.groupId,
+                ticket.topic,
+                ticket.pmember
+
 
             ];
             tableRows.push(ticketData);
         })
-        doc.text("User Details Report", 14, 15).setFontSize(12);
+        doc.text("Allocated Panel Members Report", 14, 15).setFontSize(12);
         doc.text(`Report Genarated Date - ${dateStr} `, 14, 23);
         doc.addImage(img, 'JPEG', 170, 8, 22, 22);
         // right down width height
         doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8, }, startY: 35 });
-        doc.save(`User_Details_Report.pdf`);
+        doc.save(`Allocated_Panel_Members_Report.pdf`);
       };
 
     useEffect(()=>{
-        function getUsers() {
-            axios.get("http://localhost:6500/user/allusers").then((res)=>{
-                setUsers(res.data);
+        function getPanelM() {
+            axios.get("http://localhost:6500/APannel/allAPmembers").then((res)=>{
+                setPanelM(res.data);
             }).catch((err)=>{
                 alert((err.message));
             })
         }
-        getUsers();
+        getPanelM();
     },[])
 
 
@@ -104,13 +102,10 @@ export default function AllUsers(){
         <div className="container">
 
         <br/><br/>
-        <h3><center> All Users </center></h3>
+        <h3><center> All Allocated Panels </center></h3>
         <br/><br/> 
 
-
-        <Link to={"/userreg"} ><Button type="button" class="btn btn-primary" > Add New User</Button></Link>
-
-        <Button style={{padding:'Right'}}type="button" class="btn btn-outline-warning" onClick={() =>  generatePDF(users)}>Generate Report</Button>
+        <Button style={{padding:'Right'}}type="button" class="btn btn-outline-warning" onClick={() =>  generatePDF(panelm)}>Generate Report</Button>
 
         
 
@@ -125,7 +120,7 @@ export default function AllUsers(){
         </div>
 
         <div className="col-sm">
-        <h5>User Count : {users.length}</h5>
+        <h5>User Count : {panelm.length}</h5>
         </div>
         </div>
 
@@ -139,9 +134,6 @@ export default function AllUsers(){
                             <th><center> User Name </center></th>
                             <th><center> NIC </center></th>
                             <th><center> Gender </center></th>
-                            <th><center> Contact No </center></th>
-                            <th><center> Email </center></th>
-                            <th><center> User Type </center></th>
                             <th></th>
                     
                         </tr>
@@ -149,31 +141,24 @@ export default function AllUsers(){
                     <tbody>
                         {
                             
-                            users.filter(val=>{
+                            panelm.filter(val=>{
                                 if (searchTerm === ''){
                                     return val;
                                 } else if(
 
-                                     val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.nic.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.gender.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.contactNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                     val.type.toLowerCase().includes(searchTerm.toLowerCase())
+                                     val.groupId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                     val.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                     val.pmember.toLowerCase().includes(searchTerm.toLowerCase()) 
                                 ){
                                     return val;
                                 }
                                 }).map(function (f) {
                                         return <tr>
-                                    <td ><center> {f.name} </center></td>
-                                    <td ><center> {f.nic} </center></td>
-                                    <td ><center> {f.gender} </center></td>
-                                    <td ><center> {f.contactNo} </center></td>
-                                    <td ><center> {f.email} </center></td>
-                                    <td ><center> {f.type} </center></td>
+                                    <td ><center> {f.groupId} </center></td>
+                                    <td ><center> {f.topic} </center></td>
+                                    <td ><center> {f.pmember} </center></td>
 
-                                    <td > <Link to={"/update/" + f._id} ><Button type="button" class="btn btn-primary" > Update User </Button></Link></td>
-                                    <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteUser(f._id)}> Delete </Button></td>
+                                    <td > <Button type="button" class="btn btn-outline-danger" onClick={() =>  deleteAllocatePanel(f._id)}> Delete </Button></td>
                                         </tr>
         
                                     })
