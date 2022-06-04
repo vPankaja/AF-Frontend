@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Nav1 from "../AdminNavbar";
 
@@ -31,7 +31,7 @@ export default function UploadDocument() {
 
     if (document) {
       var data = new FormData();
-      data.append("document", document);
+      data.append("attachment", document);
 
       await axios
         .post("http://localhost:6500/api/files/uploadFile", data)
@@ -41,7 +41,7 @@ export default function UploadDocument() {
             fileUrl = res.data.path.replace(/\\/g, "/");
 
             const newDocument = {
-              assignmentName: assignmentname,
+              assignmentname: assignmentname,
               document: fileUrl,
             };
 
@@ -56,7 +56,7 @@ export default function UploadDocument() {
     } else {
       const newDocument = {
         assignmentname: assignmentname,
-        document: fileUrl,
+        document: "",
       };
 
       await uploadSchemeData(newDocument);
