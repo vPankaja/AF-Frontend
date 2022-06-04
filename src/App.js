@@ -24,6 +24,11 @@ import AllSubTypes from "./components/ADMIN/allSubTypes/allSubTypes";
 import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
+import UploadDocument from "./components/ADMIN/uploadDocument/uploadDocument";
+import AllocatePM from "./components/ADMIN/allocatePM/allocataPM";
+import LandingScreen from "./components/landingpage/landingpage";
+import Register from "./components/Register/Register";
+import AllTopics from "./components/ADMIN/alltopics/alltopics";
 
 
 class App extends Component {
@@ -39,8 +44,10 @@ class App extends Component {
       <Router>
         <Nav />
         <Routes>
-          <Route exact path="/" element={<UserRegister />} />
+        <Route exact path="/" element={<LandingScreen />} />
+          <Route path="/userreg" element={<UserRegister />} />
           <Route path="/studentRegister" exact element={<StudentRegister />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<UserLogin />} />
           <Route path="/allusers" element={<AllUsers />} />
           <Route path="/studentMain" element={<StudentMain />} />
@@ -53,6 +60,9 @@ class App extends Component {
           <Route path="/allmarkings" element={<AllMarkings />} />
           <Route path="/createsubType" element={<CreateSubType />} />
           <Route path="/allsubtypes" element={<AllSubTypes />} />
+          <Route path="/uploaddocument" element={<UploadDocument />} />
+          <Route path="/allocatepm/:id" element={<AllocatePM />} />
+          <Route path="/alltopics" element={<AllTopics />} />
         </Routes>
       </Router>
     );

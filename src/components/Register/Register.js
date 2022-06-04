@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
+import Nav2 from "../login/loginNavbar";
 
-export default function UserRegister() {
+export default function Register() {
 
   const [name,setName] = useState("");
   const [nic,setNIC] = useState("");
@@ -36,7 +36,7 @@ export default function UserRegister() {
         icon:  "success",
         type: "success"
       }).then(function(){
-        window.location.href="/allusers";
+        window.location.href="/login";
       })
     } else{
       swal("Register User Failed!");
@@ -50,7 +50,7 @@ export default function UserRegister() {
 
   return (
     <>
-    <Nav1 />
+    <Nav2 />
     <div className="container">
       <form onSubmit={sendData}>
         <br/>
@@ -150,9 +150,8 @@ export default function UserRegister() {
             }}
             required>
             <option selected></option>
-            <option >SUPERVISOR</option>
-            <option >CO-SUPERVISOR</option>
-            <option >PANEL</option>
+            <option >ADMIN</option>
+            <option >STUDENT</option>
             </select>
         </div>
         <br/>
