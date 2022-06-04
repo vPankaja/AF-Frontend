@@ -11,10 +11,7 @@ import StudentRegister from "./components/studentRegister/studentRegister"
 import UserLogin from "./components/login/login";
 import Nav from "./components/nav";
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ac66d26f51ad2dc4e539c2c5aab7ea8462ed5a0
 import StudentMain from "./components/studentMain/studentMain";
 import CreateStudentGroup from "./components/createStudentGroup/createStudentGroup";
 
