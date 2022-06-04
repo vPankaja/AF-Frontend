@@ -43,10 +43,18 @@ export default function UserLogin() {
 
   const handleRedirectUser = (type) => {
     if (type == "ADMIN") {
-      window.location.replace("/allusers");
+      swal({
+        title: "Success",
+        text: "Admin Login Successfully",
+        icon:  "success",
+        type: "success"
+      }).then(function(){
+        window.location.replace("/allusers");
+      })
+      
     } 
     else if (type == "STUDENT") {
-      window.location.replace("/studentview");
+      window.location.replace("/studentMain");
     }
     else if (type == "STAFF") {
       window.location.replace("/staffview");

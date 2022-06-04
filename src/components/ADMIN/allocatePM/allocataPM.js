@@ -15,6 +15,19 @@ export default function AllocatePM() {
   const [acceptedtopics,setAcceptedtopics] = useState([]);
   const [getpanelMembers,setgetPanelMembers] = useState([]);
 
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
+
   function sendData(e){
 
     e.preventDefault();
@@ -47,31 +60,22 @@ export default function AllocatePM() {
   useEffect(() => {
         
     axios.get(`http://localhost:6500/student/getTopicById/${id}`).then((res) => {
+      console.log(res.data);
         
-        setAcceptedtopics(res.data.acceptedtopics)
+        setAcceptedtopics(res.data)
 
-        setGroupId(res.data.acceptedtopics._id)
-        setTopic(res.data.acceptedtopics.itemName)
-
-        
     }).catch((e) => {
         console.log(e);
         console.log(id);
     })
 
-})
+},[])
 
 
-  // useEffect(() => {
-  //   var panelMembers = axios.post("http://localhost:6500/user/allusers")
-
-  //   setPanelMembers(panelMembers)
-
-  // }, [])
 
   useEffect(() => {
     axios
-      .get("http://localhost:6500/user/allusers")
+      .get("http://localhost:6500/user/allPanel")
       .then((res) => {
         if (res.data.length > 0) {
           setgetPanelMembers(res.data.map((user) => user.name))
@@ -81,7 +85,7 @@ export default function AllocatePM() {
         // console.log(e);
       })
 
-  })
+  },[])
 
 
   return (
@@ -116,8 +120,7 @@ export default function AllocatePM() {
             setTopic(e.target.value);
             }}
             readOnly/>
-        </div>
-      selected  <br />
+        </div><br />
         <div class="form-group">
           <label for="submissionType">Panel Member</label>
           <select
@@ -128,12 +131,7 @@ export default function AllocatePM() {
             setPmember(e.target.value);
             }}
             required>
-            <option selected></option>
-            {/* {
-              panelMembers.forEach(element => (
-                <option >{element.name}</option>
-              ))
-            } */}
+            <option></option>
                   {getpanelMembers.map(function (user) {
                     return (
                       <option key={user} value={user}>

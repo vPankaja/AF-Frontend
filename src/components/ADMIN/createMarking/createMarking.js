@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import Nav1 from "../AdminNavbar";
 
@@ -6,6 +6,19 @@ export default function CreateMarking() {
   const [assignmentName, setAName] = useState("");
   const [overallMark, setOMark] = useState("");
   const [attachment, setAttachment] = useState("");
+
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
 
   const handleFileUpload = (event) => {
     event.persist();

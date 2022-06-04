@@ -13,6 +13,19 @@ export default function UserRegister() {
   const [password,setPassword] = useState("");
   const [type,setType] = useState("");
 
+  const handelLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
+  useEffect(() => {
+    var userData = localStorage.getItem("user");
+
+    if (!userData) {
+      handelLogout();
+    }
+  }, []);
+
   function sendData(e){
 
     e.preventDefault();
@@ -160,6 +173,7 @@ export default function UserRegister() {
         <button type="submit" class="btn btn-primary">
           Submit
         </button>
+        <br/><br/>
       </form>
     </div>
     </>

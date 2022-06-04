@@ -18,7 +18,15 @@ function Nav() {
 
   const handelLogout = () => {
     localStorage.clear();
-    window.location.href = "/login";
+    swal({
+      title: "Success",
+      text: "Admin Login Successfully",
+      icon:  "success",
+      type: "success"
+    }).then(function(){
+      window.location.href = "/login";
+    })
+    
   };
 
   useEffect(() => {

@@ -11,6 +11,19 @@ export default function AllSubTypes(){
     const [subTypes, setSubTypes] = useState([]);
     const [searchTerm, setsearchTerm] = useState("");
 
+    const handelLogout = () => {
+        localStorage.clear();
+        window.location.href = "/login";
+      };
+    
+      useEffect(() => {
+        var userData = localStorage.getItem("user");
+    
+        if (!userData) {
+          handelLogout();
+        }
+      }, []);
+
     const deleteSubType=(id) =>{
         swal({
             title: "Are you sure?",
