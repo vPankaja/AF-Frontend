@@ -34,7 +34,7 @@ export default function AllSubTypes(){
           })
           .then((willDelete) => {
                 if(willDelete){
-            axios.delete(`https://af-backend123.herokuapp.com//subtype/deleteSubType/${id}`).then(()=>{
+            axios.delete(`https://af-backend123.herokuapp.com/subtype/deleteSubType/${id}`).then(()=>{
 
 
             if (willDelete) {
@@ -57,7 +57,7 @@ export default function AllSubTypes(){
 
     useEffect(()=>{
         function getSubTypes() {
-            axios.get("https://af-backend123.herokuapp.com//subtype/allSubTypes").then((res)=>{
+            axios.get("https://af-backend123.herokuapp.com/subtype/allSubTypes").then((res)=>{
                 setSubTypes(res.data);
             }).catch((err)=>{
                 alert((err.message));
