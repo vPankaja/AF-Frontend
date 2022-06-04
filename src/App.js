@@ -22,7 +22,7 @@ import SupEvaluation from "./components/supervisor/SupEvaluation";
 import SupEvaAdd from "./components/supervisor/SupEvaAdd";
 import SupEvaEdit from "./components/supervisor/SupEvaEdit";
 import SupEvaOneDetail from "./components/supervisor/SupEvaOneDetail";
-
+import SupTopic from "./components/supervisor/SupTopic";
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class App extends Component {
           <Route path="/SupEvaAdd" element={<SupEvaAdd/>}/>
           <Route path="/SupEvaEdit/:id" element={<SupEvaEdit/>} />
           <Route path="/SupEvaOneDetail/:id" element={<SupEvaOneDetail/>} />
+          <Route path="/SupTopic" element={<SupTopic/>} />
         </Routes>
       </Router>
     );
