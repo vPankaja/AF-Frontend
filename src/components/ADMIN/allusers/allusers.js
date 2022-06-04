@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import '../../user.css'
+import '../user.css'
 import { Button } from "@material-ui/core";
 import { Link} from 'react-router-dom'
-import Nav1 from "../../AdminNavbar";
+import Nav1 from "../AdminNavbar";
 import swal from 'sweetalert';
 import jspdf from 'jspdf'
 import 'jspdf-autotable'
