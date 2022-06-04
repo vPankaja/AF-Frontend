@@ -29,7 +29,7 @@ export default function AllocatePM() {
     };
 
     axios
-      .post(`https://af-backend123.herokuapp.com/APannel/allocatePM`, newAllocatePM)
+      .post(`http://localhost:6500//APannel/allocatePM`, newAllocatePM)
       .then((willallocate) => {
         if (willallocate) {
           swal({
@@ -54,7 +54,7 @@ export default function AllocatePM() {
     }
 
     axios
-      .get(`https://af-backend123.herokuapp.com/student/getTopicById/${id}`)
+      .get(`http://localhost:6500//student/getTopicById/${id}`)
       .then((res) => {
         console.log(res.data);
         setAcceptedtopics(res.data);
@@ -67,7 +67,7 @@ export default function AllocatePM() {
       });
 
     axios
-      .get("https://af-backend123.herokuapp.com/user/allPanel")
+      .get("http://localhost:6500//user/allPanel")
       .then((res) => {
         if (res.data.length > 0) {
           setgetPanelMembers(res.data.map((user) => user.name));
