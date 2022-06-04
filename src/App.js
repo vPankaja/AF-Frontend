@@ -10,9 +10,11 @@ import UserRegister from "./components/ADMIN/userRegister/userRegister";
 import StudentRegister from "./components/studentRegister/studentRegister"
 import UserLogin from "./components/login/login";
 import Nav from "./components/nav";
-import Nav1 from './components/Navbar'
+
+
 import StudentMain from "./components/studentMain/studentMain";
 import CreateStudentGroup from "./components/createStudentGroup/createStudentGroup";
+
 import AllUsers from "./components/ADMIN/allusers/allusers";
 import UpdateUser from "./components/ADMIN/updateUser/updateUser";
 import CreateMarking from "./components/ADMIN/createMarking/createMarking";
@@ -36,7 +38,6 @@ class App extends Component {
     return (
       <Router>
         <Nav />
-        <Nav1 />
         <Routes>
           <Route exact path="/" element={<UserRegister />} />
           <Route path="/studentRegister" exact element={<StudentRegister />} />

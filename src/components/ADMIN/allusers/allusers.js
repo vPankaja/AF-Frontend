@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import '../../user.css';
 import { Link} from 'react-router-dom'
+import Nav1 from "../../Navbar";
 import swal from 'sweetalert';
 import jspdf from 'jspdf'
 import 'jspdf-autotable'
@@ -86,6 +87,7 @@ export default function AllUsers(){
 
     return(
         <>
+        <Nav1 />
         <div className="container">
         <br/><br/>
         <h1><center> All Users </center></h1>

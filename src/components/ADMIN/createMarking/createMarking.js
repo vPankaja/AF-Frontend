@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Nav1 from "../../Navbar";
 
 export default function CreateMarking() {
   const [moduleName, setMName] = useState("");
@@ -78,6 +79,8 @@ export default function CreateMarking() {
   }
 
   return (
+    <>
+    <Nav1 />
     <div className="container">
       <form onSubmit={sendData}>
         <br />
@@ -144,5 +147,6 @@ export default function CreateMarking() {
         </button>
       </form>
     </div>
+    </>
   );
 }

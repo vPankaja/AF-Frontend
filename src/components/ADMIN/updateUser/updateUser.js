@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Nav1 from "../../Navbar";
 import swal from 'sweetalert';
 
 export default function UpdateUser() {
@@ -69,6 +70,8 @@ export default function UpdateUser() {
   }
 
   return (
+    <>
+    <Nav1 />
     <div className="container">
       <form onSubmit={updateData}>
         <br />
@@ -166,5 +169,6 @@ export default function UpdateUser() {
         </button>
       </form>
     </div>
+    </>
   );
 }
