@@ -24,6 +24,7 @@ import AllSubTypes from "./components/ADMIN/allSubTypes/allSubTypes";
 import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
+import SubmitDocument from "./components/submitDocuments/submitDocuments";
 
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
           <Route path="/requestTopic" element={<RequestResearch />} />
           <Route path="/checkTopicStatus" element={<CheckTopicStatus />} />
           <Route path="/requestCoSupervisor/:id" element={<RequestCoSupervisor />} />
+          <Route path="/submitDoc/:id" element={<SubmitDocument />} />
           <Route path="/update/:id" element={<UpdateUser />} />
           <Route path="/createmarking" element={<CreateMarking />} />
           <Route path="/allmarkings" element={<AllMarkings />} />
