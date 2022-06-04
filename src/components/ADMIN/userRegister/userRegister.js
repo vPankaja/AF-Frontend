@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Nav1 from "../../Navbar";
+import Nav1 from "../../AdminNavbar";
 import swal from 'sweetalert';
 
 export default function UserRegister() {
@@ -164,6 +164,7 @@ export default function UserRegister() {
             required>
             <option selected></option>
             <option >SUPERVISOR</option>
+            <option >CO-SUPERVISOR</option>
             <option >PANEL</option>
             </select>
         </div>

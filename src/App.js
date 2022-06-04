@@ -11,7 +11,6 @@ import StudentRegister from "./components/studentRegister/studentRegister"
 import UserLogin from "./components/login/login";
 import Nav from "./components/nav";
 
-import Nav1 from './components/Navbar'
 import StudentMain from "./components/studentMain/studentMain";
 import CreateStudentGroup from "./components/createStudentGroup/createStudentGroup";
 
