@@ -21,9 +21,18 @@ import CreateMarking from "./components/ADMIN/createMarking/createMarking";
 import AllMarkings from "./components/ADMIN/allMarkings/allMarkings";
 import CreateSubType from "./components/ADMIN/createSubType/createSubType";
 import AllSubTypes from "./components/ADMIN/allSubTypes/allSubTypes";
+
+import SupHome from "./components/supervisor/SupHome";
+import SupEvaluation from "./components/supervisor/SupEvaluation";
+import SupEvaAdd from "./components/supervisor/SupEvaAdd";
+import SupEvaEdit from "./components/supervisor/SupEvaEdit";
+import SupEvaOneDetail from "./components/supervisor/SupEvaOneDetail";
+import SupTopic from "./components/supervisor/SupTopic";
+
 import RequestResearch from "./components/requestResearch/requestResearch";
 import CheckTopicStatus from "./components/checkTopicStatus/checkTopicStatus";
 import RequestCoSupervisor from "./components/requestCoSupervisor/requestCoSupervisor";
+
 
 
 class App extends Component {
@@ -53,6 +62,14 @@ class App extends Component {
           <Route path="/allmarkings" element={<AllMarkings />} />
           <Route path="/createsubType" element={<CreateSubType />} />
           <Route path="/allsubtypes" element={<AllSubTypes />} />
+
+          
+          <Route path="/SupHome" element={<SupHome/>} />
+          <Route path="/SupEvalution" element={<SupEvaluation/>} />
+          <Route path="/SupEvaAdd" element={<SupEvaAdd/>}/>
+          <Route path="/SupEvaEdit/:id" element={<SupEvaEdit/>} />
+          <Route path="/SupEvaOneDetail/:id" element={<SupEvaOneDetail/>} />
+          <Route path="/SupTopic" element={<SupTopic/>} />
         </Routes>
       </Router>
     );
