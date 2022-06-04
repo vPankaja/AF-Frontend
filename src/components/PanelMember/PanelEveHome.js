@@ -22,7 +22,7 @@ export default class PanelEveHome extends Component {
 
   //get request method
   retrievePanelEve(){
-      axios.get("http://localhost:6500/PanelEve/GetAlldetails").then(res=>{
+      axios.get("http://localhost:6500PanelEve/GetAlldetails").then(res=>{
         console.log(res.data);
        
         if(res.data.success){
@@ -38,7 +38,7 @@ export default class PanelEveHome extends Component {
  //delete function
 
  onDelete = (id)=>{
-  axios.delete(`http://localhost:6500/PanelEve/stdDetails/delete/${id}`).then((res)=>{
+  axios.delete(`http://localhost:6500PanelEve/stdDetails/delete/${id}`).then((res)=>{
 
     
 
@@ -67,7 +67,7 @@ handleSearchArea=(e)=>{
 
   const searchKey = e.currentTarget.value;
   
-  axios.get("http://localhost:6500/PanelEve/GetAlldetails").then(res=>{
+  axios.get("http://localhost:6500PanelEve/GetAlldetails").then(res=>{
   if(res.data.success){
   
     this.filterData(res.data.existingDocs,searchKey)
